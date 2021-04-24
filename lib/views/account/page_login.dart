@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                   style: TextStyle(
                     color: FitwithColors.getSecondary400(),
                     fontWeight: FontWeight.bold,
-                    fontSize: 16.0,
+                    fontSize: 18.0,
                   ),
                 ),
               ),
@@ -106,6 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   children: [
                     CustomOutlinedTextField(
+
                       labelText: '이메일',
                       validator: (String value) {
                         if (value.isEmpty) {
@@ -153,7 +154,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Container(
                         width: _deviceSize.width,
                         alignment: Alignment.center,
-                        padding: EdgeInsets.all(12.0),
+                        padding: EdgeInsets.all(14.0),
                         decoration: BoxDecoration(
                           color: FitwithColors.getPrimaryColor(),
                           borderRadius: BorderRadius.circular(8.0),
@@ -162,7 +163,7 @@ class _LoginPageState extends State<LoginPage> {
                           '로그인',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 16.0,
+                            fontSize: 18.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -174,7 +175,7 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 10.0),
+              SizedBox(height: 15.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -182,7 +183,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text(
                       '회원가입',
                       style: TextStyle(
-                        fontSize: 12.0,
+                        fontSize: 14.0,
                         fontWeight: FontWeight.bold,
                         color: FitwithColors.getSecondary300(),
                       ),
@@ -193,7 +194,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Text(
                     '비밀번호 찾기',
                     style: TextStyle(
-                      fontSize: 12.0,
+                      fontSize: 14.0,
                       color: FitwithColors.getSecondary300(),
                     ),
                   )),
@@ -209,7 +210,7 @@ class _LoginPageState extends State<LoginPage> {
                       margin: EdgeInsets.zero,
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 15.0),
-                        height: 40.0,
+                        height: 45.0,
                         child: Row(
                           children: [
                             Container(
@@ -242,7 +243,7 @@ class _LoginPageState extends State<LoginPage> {
                       margin: EdgeInsets.zero,
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 15.0),
-                        height: 40.0,
+                        height: 45.0,
                         child: Row(
                           children: [
                             Container(

@@ -39,8 +39,9 @@ class _CustomOutlinedTextFieldState extends State<CustomOutlinedTextField> {
         TextFormField(
           controller: widget.controller,
           style: TextStyle(
+            height: 1.5,
             color: FitwithColors.getSecondary300(),
-            fontSize: 14.0,
+            fontSize: 16.0,
           ),
           decoration: InputDecoration(
             isDense: true,

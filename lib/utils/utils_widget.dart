@@ -79,6 +79,7 @@ class WidgetUtils {
 
   static Widget buildDefaultButton2(String text, Function onPressed) {
     return FlatButton(
+      height: 40,
       minWidth: 100,
       onPressed: onPressed,
       // padding: const EdgeInsets.only(top: 8.0, bottom: 4.0, left: 10, right: 10),
@@ -95,6 +96,7 @@ class WidgetUtils {
   }
   static Widget buildDefaultButton1(String text, Function onPressed) {
     return FlatButton(
+      height: 40,
       minWidth: 100,
       onPressed: onPressed,
       // padding: const EdgeInsets.only(top: 8.0, bottom: 4.0),

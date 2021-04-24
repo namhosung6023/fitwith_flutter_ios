@@ -6,6 +6,7 @@ import 'package:fitwith/models/model_bodylog.dart';
 import 'package:fitwith/models/model_checklist.dart';
 import 'package:fitwith/models/model_comment.dart';
 import 'package:fitwith/models/model_member.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -76,7 +77,6 @@ class Trainer extends ChangeNotifier {
   Future<String> getMemberList() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _token = prefs.getString('token');
-
     if (dio == null) dio = Dio(options);
     if (_token == null) {
       print('token is null');
@@ -93,11 +93,8 @@ class Trainer extends ChangeNotifier {
             DateTime endDate = DateFormat('yyyy-MM-dd')
                 .parse(memberList[i]['premium']['endDate']);
             String _avatar;
-            if(memberList[i]['user']['avatar'] != null && memberList[i]['user']['avatar'] != ''){
               _avatar = memberList[i]['user']['avatar'];
-            } else {
-              _avatar = 'https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg';
-            }
+
 
             Member _member = Member(
               memberList[i]['user']['username'],

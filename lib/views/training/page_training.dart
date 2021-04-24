@@ -95,6 +95,7 @@ class _TrainingPageState extends State<TrainingPage> {
                             Text(
                               '내 트레이너',
                               style: TextStyle(
+                                fontSize: 16,
                                 color: FitwithColors.getSecondary400(),
                               ),
                             ),
@@ -111,13 +112,14 @@ class _TrainingPageState extends State<TrainingPage> {
                         '추천 트레이너',
                         style: TextStyle(
                           color: FitwithColors.getSecondary400(),
+                          fontSize: 16,
                         ),
                       ),
                       SizedBox(width: 4.0),
                       Text(
                         '(${_trainers.length}명)',
                         style: TextStyle(
-                          fontSize: 12.0,
+                          fontSize: 14.0,
                           color: FitwithColors.getSecondary300(),
                         ),
                       ),
@@ -169,7 +171,7 @@ class _TrainingPageState extends State<TrainingPage> {
                             Text(
                               value.username,
                               style: TextStyle(
-                                fontSize: 14.0,
+                                fontSize: 16.0,
                                 color: FitwithColors.getSecondary400(),
                               ),
                             ),
@@ -177,7 +179,7 @@ class _TrainingPageState extends State<TrainingPage> {
                             Text(
                               'Wither',
                               style: TextStyle(
-                                fontSize: 11.0,
+                                fontSize: 13.0,
                                 color: FitwithColors.getBasicOrange(),
                               ),
                             )
@@ -186,7 +188,7 @@ class _TrainingPageState extends State<TrainingPage> {
                         SizedBox(height: 5.0),
                         value.trainerId == _myTrainerId
                             ? Text(
-                                "'${formatDate(user.startDate, [
+                                "${formatDate(user.startDate, [
                                   yy,
                                   '.',
                                   mm,
@@ -198,10 +200,10 @@ class _TrainingPageState extends State<TrainingPage> {
                                   mm,
                                   '.',
                                   dd
-                                ])}'",
+                                ])}",
                                 style: TextStyle(
                                   color: FitwithColors.getSecondary200(),
-                                  fontSize: 12.0,
+                                  fontSize: 13.0,
                                 ),
                               )
                             : Row(
@@ -210,7 +212,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                     return Text(
                                       '#$value ',
                                       style: TextStyle(
-                                        fontSize: 12.0,
+                                        fontSize: 14.0,
                                         color: FitwithColors.getSecondary200(),
                                       ),
                                     );
@@ -227,7 +229,7 @@ class _TrainingPageState extends State<TrainingPage> {
                         style: TextStyle(
                           color: FitwithColors.getSecondary600(),
                           fontWeight: FontWeight.bold,
-                          fontSize: 16.0,
+                          fontSize: 18.0,
                         ),
                       )
                     : Container(),
@@ -252,7 +254,7 @@ class _TrainingPageState extends State<TrainingPage> {
                               '"${value.username}"',
                               style: TextStyle(
                                 color: FitwithColors.getPrimaryColor(),
-                                fontSize: 18.0,
+                                fontSize: 20.0,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -260,17 +262,18 @@ class _TrainingPageState extends State<TrainingPage> {
                               '님께',
                               style: TextStyle(
                                 color: FitwithColors.getSecondary400(),
-                                fontSize: 18.0,
+                                fontSize: 20.0,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],
                         ),
+                        SizedBox(height: 3,),
                         Text(
                           '신청하시겠습니까?',
                           style: TextStyle(
                             color: FitwithColors.getSecondary400(),
-                            fontSize: 18.0,
+                            fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -285,14 +288,14 @@ class _TrainingPageState extends State<TrainingPage> {
                           Text(
                             '신청 후 변경이 불가하오니',
                             style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 14,
                               color: FitwithColors.getSecondary300(),
                             ),
                           ),
                           Text(
                             '다시 한번 확인해주세요',
                             style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 14,
                               color: FitwithColors.getSecondary300(),
                             ),
                           ),

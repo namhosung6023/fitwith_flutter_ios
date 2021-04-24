@@ -86,24 +86,44 @@ class _JoinPageState extends State<JoinPage> {
   Widget build(BuildContext context) {
     _deviceSize = MediaQuery.of(context).size;
 
-    return Stack(
-      children: [
-        buildScaffold(
-          context,
-          _buildBody(),
-        ),
-        _loading ? buildLoading() : Container()
-      ],
+    return Container(
+      color: Colors.white,
+      child: Stack(
+        children: [
+          buildScaffold(
+            context,
+            _buildBody(),
+          ),
+          _loading ? buildLoading() : Container()
+        ],
+      ),
     );
   }
 
   Widget _buildBody() {
-    return Center(
-      child: SingleChildScrollView(
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(80.0),
+        child:  AppBar (
+          elevation: 0,
+          backgroundColor: Colors.white,
+          // titleSpacing: -10.0,
+          leading: IconButton(
+            icon: Icon(Icons.chevron_left,
+              size: 35,
+              color: FitwithColors.getSecondary300(),),
+            padding: EdgeInsets.fromLTRB(20,20,0,0),
+            onPressed: ()=> Navigator.of(context).pop(),
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 30.0),
+          color: Colors.white,
+          padding: EdgeInsets.fromLTRB(30, 50, 30, 0),
+          // padding: EdgeInsets.symmetric(horizontal: 30.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Container(
                 alignment: Alignment.centerLeft,
@@ -112,7 +132,7 @@ class _JoinPageState extends State<JoinPage> {
                   style: TextStyle(
                     color: FitwithColors.getSecondary400(),
                     fontWeight: FontWeight.bold,
-                    fontSize: 16.0,
+                    fontSize: 18.0,
                   ),
                 ),
               ),
@@ -158,13 +178,13 @@ class _JoinPageState extends State<JoinPage> {
                       onEditingComplete: () =>
                           FocusScope.of(context).nextFocus(),
                     ),
-                    SizedBox(height: 3.0),
+                    SizedBox(height: 6.0),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 5.0),
                       child: Text(
                         '* 이메일에 오타가 없는지 다시 한번 확인해주세요',
                         style: TextStyle(
-                          fontSize: 10.0,
+                          fontSize: 12.0,
                           color: FitwithColors.getSecondary300(),
                         ),
                       ),
@@ -202,13 +222,13 @@ class _JoinPageState extends State<JoinPage> {
                       keyboardType: TextInputType.visiblePassword,
                       onEditingComplete: () => FocusScope.of(context).unfocus(),
                     ),
-                    SizedBox(height: 3.0),
+                    SizedBox(height: 6.0),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 5.0),
                       child: Text(
                         '* 영문/숫자/특수문자 조합, 8자 이상',
                         style: TextStyle(
-                          fontSize: 10.0,
+                          fontSize: 12.0,
                           color: FitwithColors.getSecondary300(),
                         ),
                       ),
@@ -233,7 +253,7 @@ class _JoinPageState extends State<JoinPage> {
                         child: Container(
                           width: _deviceSize.width,
                           alignment: Alignment.center,
-                          padding: EdgeInsets.all(12.0),
+                          padding: EdgeInsets.all(15.0),
                           decoration: BoxDecoration(
                             color: FitwithColors.getPrimaryColor(),
                             borderRadius: BorderRadius.circular(8.0),
@@ -268,7 +288,7 @@ class _JoinPageState extends State<JoinPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 13.0),
+              SizedBox(height: 17.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -278,7 +298,7 @@ class _JoinPageState extends State<JoinPage> {
                         '이미 회원이신가요?',
                         style: TextStyle(
                           color: FitwithColors.getSecondary300(),
-                          fontSize: 12.0,
+                          fontSize: 14.0,
                         ),
                       ),
                       SizedBox(width: 8.0),
@@ -287,7 +307,7 @@ class _JoinPageState extends State<JoinPage> {
                           '로그인',
                           style: TextStyle(
                             color: FitwithColors.getSecondary400(),
-                            fontSize: 12.0,
+                            fontSize: 14.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -300,7 +320,7 @@ class _JoinPageState extends State<JoinPage> {
                       '약관보기',
                       style: TextStyle(
                         color: FitwithColors.getSecondary400(),
-                        fontSize: 12.0,
+                        fontSize: 14.0,
                       ),
                     ),
                     onTap: () {
@@ -309,7 +329,7 @@ class _JoinPageState extends State<JoinPage> {
                   )
                 ],
               ),
-              SizedBox(height: 10.0),
+              SizedBox(height: 5000.0),
             ],
           ),
         ),

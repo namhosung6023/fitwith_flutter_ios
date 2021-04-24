@@ -81,9 +81,24 @@ class _SurveyPageState extends State<SurveyPage> {
   }
 
   Widget _buildBody() {
-    return Center(
-      child: SingleChildScrollView(
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(80.0),
+        child: AppBar (
+          elevation: 0,
+          backgroundColor: Colors.white,
+          leading: IconButton(
+            icon: Icon(Icons.chevron_left,
+              size: 35,
+              color: FitwithColors.getSecondary300(),),
+            padding: EdgeInsets.fromLTRB(20,20,0,0),
+            onPressed: ()=> Navigator.of(context).pop(),
+          ),
+        )
+      ),
+      body: SingleChildScrollView(
         child: Container(
+          color: Colors.white,
           padding: EdgeInsets.symmetric(horizontal: 60.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -91,45 +106,36 @@ class _SurveyPageState extends State<SurveyPage> {
               Text(
                 '추가 정보 입력',
                 style: TextStyle(
-                  fontSize: 20.0,
+                  fontSize: 24.0,
                   color: FitwithColors.getSecondary400(),
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 10.0),
+              SizedBox(height: 15.0),
               Text(
                 '* 트레이너님이 회원님을 알아볼 수 있도록',
                 style: TextStyle(
-                  fontSize: 12.0,
+                  fontSize: 14.0,
                   color: FitwithColors.getBasicOrange(),
                 ),
               ),
+              SizedBox(height: 3.0),
               Text(
                 '추가 정보를 입력해주세요',
                 style: TextStyle(
-                  fontSize: 12.0,
+                  fontSize: 14.0,
                   color: FitwithColors.getBasicOrange(),
                 ),
               ),
-              SizedBox(height: 40.0),
+              SizedBox(height: 60.0),
               InkWell(
+                onTap: _getImage,
                 highlightColor: Colors.transparent,
                 splashColor: Colors.transparent,
-                child: Container(
-                  height: 80.0,
-                  padding: EdgeInsets.all(10.0),
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: _image != null
+                child:  _image != null
                           ? FileImage(_image)
-                          : AssetImage('assets/user_avatar.png'),
-                      fit: BoxFit.fitHeight,
-                    ),
-                    shape: BoxShape.circle,
-                  ),
+                          : Image.asset('assets/joinProfile.png',width: 140),
                 ),
-                onTap: _getImage,
-              ),
               SizedBox(height: 40.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -137,6 +143,7 @@ class _SurveyPageState extends State<SurveyPage> {
                   Text(
                     '성별',
                     style: TextStyle(
+                      fontSize: 16,
                       color: FitwithColors.getSecondary400(),
                     ),
                   ),
@@ -146,7 +153,7 @@ class _SurveyPageState extends State<SurveyPage> {
                         child: Container(
                           padding: EdgeInsets.symmetric(
                             horizontal: 25.0,
-                            vertical: 6.0,
+                            vertical: 8.0,
                           ),
                           decoration: BoxDecoration(
                             border: Border.all(
@@ -176,7 +183,7 @@ class _SurveyPageState extends State<SurveyPage> {
                         child: Container(
                           padding: EdgeInsets.symmetric(
                             horizontal: 25.0,
-                            vertical: 6.0,
+                            vertical: 8.0,
                           ),
                           decoration: BoxDecoration(
                             border: Border.all(
@@ -213,6 +220,7 @@ class _SurveyPageState extends State<SurveyPage> {
                   Text(
                     '나이',
                     style: TextStyle(
+                      fontSize: 16,
                       color: FitwithColors.getSecondary400(),
                     ),
                   ),
@@ -234,7 +242,7 @@ class _SurveyPageState extends State<SurveyPage> {
                           style: TextStyle(
                             fontWeight: FontWeight.normal,
                             color: FitwithColors.getSecondary400(),
-                            fontSize: 14.0,
+                            fontSize: 16.0,
                           ),
                         ),
                         suffixIconConstraints:
@@ -255,11 +263,11 @@ class _SurveyPageState extends State<SurveyPage> {
                   )
                 ],
               ),
-              SizedBox(height: 40.0),
+              SizedBox(height: 70.0),
               InkWell(
                 child: Container(
                   alignment: Alignment.center,
-                  padding: EdgeInsets.all(12.0),
+                  padding: EdgeInsets.all(15.0),
                   decoration: BoxDecoration(
                     color: FitwithColors.getPrimaryColor(),
                     borderRadius: BorderRadius.circular(8.0),
@@ -289,6 +297,7 @@ class _SurveyPageState extends State<SurveyPage> {
                   }
                 },
               ),
+              SizedBox(height: 400.0),
             ],
           ),
         ),

@@ -99,12 +99,12 @@ class _PremiumMemberPageState extends State<PremiumMemberPage>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 buildBlankPage('함께 하고싶은 트레이너를 선택해주세요'),
-                SizedBox(height: 40.0),
+                SizedBox(height: 50.0),
                 InkWell(
                   child: Container(
                     padding: EdgeInsets.symmetric(
                       horizontal: 50.0,
-                      vertical: 10.0,
+                      vertical: 16.0,
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
@@ -113,6 +113,7 @@ class _PremiumMemberPageState extends State<PremiumMemberPage>
                     child: Text(
                       '신청하러 가기',
                       style: TextStyle(
+                        fontSize: 18,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),

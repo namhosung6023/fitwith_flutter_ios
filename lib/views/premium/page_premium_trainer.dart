@@ -60,10 +60,24 @@ class _PremiumTrainerPageState extends State<PremiumTrainerPage> {
                           ),
                         ),
                         SizedBox(height: 30.0),
-                        Text('전체 ${value.memberList.length}명',
-                        style: TextStyle(
-                          fontSize: 16
-                        ),),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text('전체',
+                              style: TextStyle(
+                                  fontSize: 14
+                              ),),
+                            Text(' ${value.memberList.length}',
+                              style: TextStyle(
+                                  fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),),
+                            Text('명',
+                            style: TextStyle(
+                              fontSize: 14
+                            ),),
+                          ],
+                        ),
                         SizedBox(height: 10.0),
                         ...value.memberList?.map(
                           (member) {
@@ -154,12 +168,15 @@ class _PremiumTrainerPageState extends State<PremiumTrainerPage> {
                 Row(
                   children: [
                     ClipOval(
-                          child: Image.network(
+                          child: member.avatar != '' &&  member.avatar != null ? Image.network(
                             member.avatar,
                             fit: BoxFit.cover,
                             width: 40.0,
                             height: 40.0,
-                          ),
+                          ) : Image.asset("assets/Profile.png",
+                            fit: BoxFit.cover,
+                            width: 40.0,
+                            height: 40.0,) ,
                         ),
                         SizedBox(
                           width: 15.0,

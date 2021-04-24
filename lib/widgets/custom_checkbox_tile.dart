@@ -74,7 +74,7 @@ class _CustomCheckboxTileState extends State<CustomCheckboxTile> {
               widget.title,
               style: TextStyle(
                 color: FitwithColors.getSecondary300(),
-                fontSize: 12.0,
+                fontSize: 14.0,
               ),
             ),
           ],
