@@ -48,6 +48,8 @@ class CommonUtils {
     }
 
     if(Platform.isIOS) {
+      print(Platform.isIOS);
+      print(Platform.isAndroid);
       return Navigator.push(
           context, CupertinoPageRoute(builder: (context) => newRoute));
     } else {

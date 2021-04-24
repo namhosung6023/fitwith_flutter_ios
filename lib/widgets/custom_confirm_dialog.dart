@@ -15,7 +15,7 @@ Widget buildConfirmDialog(
       Row(
         children: [
           Align(
-            alignment: Alignment.center,
+            // alignment: Alignment.center,
             child: WidgetUtils.buildDefaultButton2(
               '취소',
               () => Navigator.pop(context),
@@ -23,7 +23,7 @@ Widget buildConfirmDialog(
           ),
           SizedBox(width: 10),
           Align(
-            alignment: Alignment.center,
+            // alignment: Alignment.center,
             child: WidgetUtils.buildDefaultButton1(
               '확인',
               () {

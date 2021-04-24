@@ -24,21 +24,37 @@ class CheckList {
         checkDate = json['checkDate'];
 
   Map<String, dynamic> toJson() {
+    if(checkDate == null) {
     return {
       'name': name,
       'contents': contents,
       'isEditable': isEditable ?? false,
-      'checkDate': checkDate ?? '',
+      'checkDate' : '',
     };
+    } else {
+      return {
+        'name': name,
+        'contents': contents,
+        'isEditable': isEditable ?? false,
+        'checkDate' : checkDate.toIso8601String(),
+      };
+    }
   }
 
   Map<String, dynamic> toJsonDiet() {
-    return {
+    if(checkDate == null) return {
       'time': time,
       'name': name,
       'contents': contents,
       'isEditable': isEditable ?? false,
-      'checkDate': checkDate,
+      'checkDate': '',
+    };
+    else return {
+    'time': time,
+    'name': name,
+    'contents': contents,
+    'isEditable': isEditable ?? false,
+    'checkDate': checkDate.toIso8601String(),
     };
   }
 }
