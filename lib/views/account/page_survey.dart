@@ -309,7 +309,7 @@ class _SurveyPageState extends State<SurveyPage> {
                   }
                 },
               ),
-              SizedBox(height: 400.0),
+              // SizedBox(height: 400.0),
             ],
           ),
         ),

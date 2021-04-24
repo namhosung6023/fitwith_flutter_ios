@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:io' show Platform;
 
 /// 공통으로 사용
 class CommonUtils {
@@ -26,21 +28,33 @@ class CommonUtils {
   static Future<dynamic> movePage(BuildContext context, newRoute,
       {bool isReplace = false, bool isPushAndRemoveUntil = false}) {
     if (isPushAndRemoveUntil) {
-      return Navigator.pushAndRemoveUntil(
-          context,
-          PageRouteBuilder(
-            pageBuilder: (context, _, __) => newRoute,
-          ),
-          (route) => false);
+      if(Platform.isIOS) {
+        return Navigator.pushAndRemoveUntil(
+            context, CupertinoPageRoute(builder: (context) => newRoute), (route) => false);
+      } else {
+        return Navigator.pushAndRemoveUntil(
+            context, PageRouteBuilder(pageBuilder: (context, _, __) => newRoute), (route) => false);
+      }
     }
 
     if (isReplace) {
-      return Navigator.pushReplacement(
-          context, PageRouteBuilder(pageBuilder: (context, _, __) => newRoute));
+      if(Platform.isIOS) {
+        return Navigator.pushReplacement(
+            context, CupertinoPageRoute(builder: (context) => newRoute));
+      } else {
+        return Navigator.pushReplacement(
+            context, PageRouteBuilder(pageBuilder: (context, _, __) => newRoute));
+      }
     }
 
-    return Navigator.push(
-        context, PageRouteBuilder(pageBuilder: (context, _, __) => newRoute));
+    if(Platform.isIOS) {
+      return Navigator.push(
+          context, CupertinoPageRoute(builder: (context) => newRoute));
+    } else {
+      return Navigator.push(
+              context, PageRouteBuilder(pageBuilder: (context, _, __) => newRoute));
+    }
+
   }
 
   /// 이름을 통한 페이지 이동
