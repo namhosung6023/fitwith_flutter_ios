@@ -316,18 +316,18 @@ class _JoinPageState extends State<JoinPage> {
                       )
                     ],
                   ),
-                  InkWell(
-                    child: Text(
-                      '약관보기',
-                      style: TextStyle(
-                        color: FitwithColors.getSecondary400(),
-                        fontSize: 14.0,
-                      ),
-                    ),
-                    onTap: () {
-                      CommonUtils.movePage(context, SurveyPage());
-                    },
-                  )
+                  // InkWell(
+                  //   child: Text(
+                  //     '약관보기',
+                  //     style: TextStyle(
+                  //       color: FitwithColors.getSecondary400(),
+                  //       fontSize: 14.0,
+                  //     ),
+                  //   ),
+                  //   onTap: () {
+                  //     CommonUtils.movePage(context, SurveyPage());
+                  //   },
+                  // )
                 ],
               ),
               // SizedBox(height: 5000.0),
