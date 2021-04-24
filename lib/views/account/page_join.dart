@@ -102,6 +102,7 @@ class _JoinPageState extends State<JoinPage> {
 
   Widget _buildBody() {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(80.0),
         child:  AppBar (
@@ -120,7 +121,7 @@ class _JoinPageState extends State<JoinPage> {
       body: SingleChildScrollView(
         child: Container(
           color: Colors.white,
-          padding: EdgeInsets.fromLTRB(30, 50, 30, 0),
+          padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
           // padding: EdgeInsets.symmetric(horizontal: 30.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -329,7 +330,7 @@ class _JoinPageState extends State<JoinPage> {
                   )
                 ],
               ),
-              SizedBox(height: 5000.0),
+              // SizedBox(height: 5000.0),
             ],
           ),
         ),
