@@ -319,7 +319,7 @@ class _MemberDiaryState extends State<MemberDiary> {
 
   Widget _buildWeight(String weightName, double weight) {
     TextEditingController _textController = TextEditingController();
-    _textController.text = '$weight';
+    if(weight != null) _textController.text = '$weight';
     _textController.selection = TextSelection.fromPosition(
         TextPosition(offset: _textController.text.length));
 

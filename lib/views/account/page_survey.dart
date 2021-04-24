@@ -82,6 +82,7 @@ class _SurveyPageState extends State<SurveyPage> {
 
   Widget _buildBody() {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(80.0),
         child: AppBar (
@@ -128,15 +129,25 @@ class _SurveyPageState extends State<SurveyPage> {
                 ),
               ),
               SizedBox(height: 60.0),
-              InkWell(
-                radius: 800,
-                onTap: _getImage,
-                highlightColor: Colors.transparent,
-                splashColor: Colors.transparent,
-                child:  _image != null
-                          ? Image.file(_image, width: 140)
-                          : Image.asset('assets/joinProfile.png',width: 140),
-                ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                   _getImage();
+                  });
+                },
+                child: ClipOval(
+
+                  // borderRadius: BorderRadius.all(Radius.circular(50)),
+                   // child : Image.asset('assets/joinProfile.png',width: 140),
+                  // radius: 800,
+                  // onTap: _getImage,
+                  // highlightColor: Colors.transparent,
+                  // splashColor: Colors.transparent,
+                  child:  _image != null
+                            ? Image.file(_image, height: 140, width: 140, fit: BoxFit.cover,)
+                            : Image.asset('assets/joinProfile.png',width: 140, height: 140, fit: BoxFit.cover,),
+                  ),
+              ),
               SizedBox(height: 40.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -298,7 +309,7 @@ class _SurveyPageState extends State<SurveyPage> {
                   }
                 },
               ),
-              SizedBox(height: 400.0),
+              // SizedBox(height: 400.0),
             ],
           ),
         ),

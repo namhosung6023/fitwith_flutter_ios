@@ -63,16 +63,16 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 isPushAndRemoveUntil: true,
               );
             }),
-        _artBoard != null
-            ? SizedBox(
-                height: 43.0,
-                width: 43.0,
-                child: Rive(
-                  artboard: _artBoard,
-                  fit: BoxFit.cover,
-                ),
-              )
-            : Container(),
+        // _artBoard != null
+        //     ? SizedBox(
+        //         height: 43.0,
+        //         width: 43.0,
+        //         child: Rive(
+        //           artboard: _artBoard,
+        //           fit: BoxFit.cover,
+        //         ),
+        //       )
+        //     : Container(),
         SizedBox(
           width: 8.0,
         )

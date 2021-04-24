@@ -62,8 +62,12 @@ class _TrainingPageState extends State<TrainingPage> {
   @override
   void initState() {
     super.initState();
-    Provider.of<User>(context, listen: false).getPremiumUserData();
-    _getTrainerList();
+    if(Provider.of<User>(context, listen: false).type == '1') {
+      Provider.of<User>(context, listen: false).getPremiumUserData();
+      _getTrainerList();
+    } else {
+      setState(() => _loading = false);
+    }
   }
 
   @override
@@ -73,7 +77,7 @@ class _TrainingPageState extends State<TrainingPage> {
         : Consumer<User>(builder: (context, user, child) {
             print('here');
             print(user.premiumId);
-            return Container(
+            return user.type == '1' ? Container(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               child: ListView(
                 padding: EdgeInsets.symmetric(vertical: 10.0),
@@ -131,6 +135,9 @@ class _TrainingPageState extends State<TrainingPage> {
                       .toList(),
                 ],
               ),
+            )
+            : Center(
+              child: Text('메인페이지'),
             );
           });
   }

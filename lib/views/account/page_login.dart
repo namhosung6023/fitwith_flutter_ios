@@ -190,86 +190,86 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     onTap: () => CommonUtils.movePage(context, JoinPage()),
                   ),
-                  InkWell(
-                      child: Text(
-                    '비밀번호 찾기',
-                    style: TextStyle(
-                      fontSize: 14.0,
-                      color: FitwithColors.getSecondary300(),
-                    ),
-                  )),
+                  // InkWell(
+                  //     child: Text(
+                  //   '비밀번호 찾기',
+                  //   style: TextStyle(
+                  //     fontSize: 14.0,
+                  //     color: FitwithColors.getSecondary300(),
+                  //   ),
+                  // )),
                 ],
               ),
               SizedBox(height: 40.0),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: Card(
-                      elevation: 3.0,
-                      margin: EdgeInsets.zero,
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 15.0),
-                        height: 45.0,
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 20.0,
-                              child: Image.asset('assets/ic_google.png'),
-                            ),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  'Google 로그인',
-                                  style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: FitwithColors.getPrimaryColor(),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 10.0),
-                  Expanded(
-                    flex: 1,
-                    child: Card(
-                      elevation: 3.0,
-                      margin: EdgeInsets.zero,
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 15.0),
-                        height: 45.0,
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 18.0,
-                              child: Image.asset('assets/ic_naver.png'),
-                            ),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  'Naver 로그인',
-                                  style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: FitwithColors.getPrimaryColor(),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
+              // Row(
+              //   children: [
+              //     Expanded(
+              //       flex: 1,
+              //       child: Card(
+              //         elevation: 3.0,
+              //         margin: EdgeInsets.zero,
+              //         child: Container(
+              //           padding: EdgeInsets.symmetric(horizontal: 15.0),
+              //           height: 45.0,
+              //           child: Row(
+              //             children: [
+              //               Container(
+              //                 height: 20.0,
+              //                 child: Image.asset('assets/ic_google.png'),
+              //               ),
+              //               Expanded(
+              //                 child: Container(
+              //                   alignment: Alignment.center,
+              //                   child: Text(
+              //                     'Google 로그인',
+              //                     style: TextStyle(
+              //                       fontSize: 14.0,
+              //                       fontWeight: FontWeight.bold,
+              //                       color: FitwithColors.getPrimaryColor(),
+              //                     ),
+              //                   ),
+              //                 ),
+              //               ),
+              //             ],
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //     SizedBox(width: 10.0),
+              //     Expanded(
+              //       flex: 1,
+              //       child: Card(
+              //         elevation: 3.0,
+              //         margin: EdgeInsets.zero,
+              //         child: Container(
+              //           padding: EdgeInsets.symmetric(horizontal: 15.0),
+              //           height: 45.0,
+              //           child: Row(
+              //             children: [
+              //               Container(
+              //                 height: 18.0,
+              //                 child: Image.asset('assets/ic_naver.png'),
+              //               ),
+              //               Expanded(
+              //                 child: Container(
+              //                   alignment: Alignment.center,
+              //                   child: Text(
+              //                     'Naver 로그인',
+              //                     style: TextStyle(
+              //                       fontSize: 14.0,
+              //                       fontWeight: FontWeight.bold,
+              //                       color: FitwithColors.getPrimaryColor(),
+              //                     ),
+              //                   ),
+              //                 ),
+              //               ),
+              //             ],
+              //           ),
+              //         ),
+              //       ),
+              //     )
+              //   ],
+              // ),
               SizedBox(height: 30.0),
             ],
           ),
