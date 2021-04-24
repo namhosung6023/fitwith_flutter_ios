@@ -129,11 +129,12 @@ class _SurveyPageState extends State<SurveyPage> {
               ),
               SizedBox(height: 60.0),
               InkWell(
+                radius: 800,
                 onTap: _getImage,
                 highlightColor: Colors.transparent,
                 splashColor: Colors.transparent,
                 child:  _image != null
-                          ? FileImage(_image)
+                          ? Image.file(_image, width: 140)
                           : Image.asset('assets/joinProfile.png',width: 140),
                 ),
               SizedBox(height: 40.0),

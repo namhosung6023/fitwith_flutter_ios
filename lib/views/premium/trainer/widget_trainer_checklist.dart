@@ -486,10 +486,8 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                         // alignment: Alignment.bottomLeft,
                         child: ReorderableDragStartListener(
                           index: index,
-                          child: Image.assets(
-                            Icons.drag_handle,
-                            color: FitwithColors.getSecondary200(),
-                            size: 25.0,
+                          child: Image.asset("assets/change2.png" ,
+                            width: 25,
                           ),
                         ),
                       ),
