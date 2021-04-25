@@ -16,7 +16,7 @@ class TrainerChecklist extends StatefulWidget {
 class _TrainerChecklistState extends State<TrainerChecklist> {
   final _formKey = GlobalKey<FormState>();
   Size _deviceSize;
-  double _itemHeight = 90.0;
+  double _itemHeight = 70.0;
 
   @override
   Widget build(BuildContext context) {
@@ -329,7 +329,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                         Expanded(
                           child: Text(
                             dietList.name,
-                            maxLines: 1 ,
+                            maxLines: 1,
                             style: TextStyle(
                               fontSize: 14,
                               color: _color,
@@ -404,37 +404,24 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
               index == 0 ? Colors.transparent : FitwithColors.getSecondary200(),
         ),
         InkWell(
-          splashColor: item.isEditable != null && item.isEditable == false
-              ? null
-              : Colors.transparent,
-          highlightColor: item.isEditable != null && item.isEditable == false
-              ? null
-              : Colors.transparent,
-          hoverColor: item.isEditable != null && item.isEditable == false
-              ? null
-              : Colors.transparent,
-          onTap: () {
-            if (item.isEditable != null && item.isEditable == false) {
-              showDialog(
-                context: context,
-                builder: (context) => _buildDialog(item: item, index: index),
-              );
-            }
-          },
+          onTap: () => showDialog(
+            context: context,
+            builder: (context) => _buildDialog(item: item, index: index),
+          ),
           child: Container(
             height: _itemHeight,
-            padding: EdgeInsets.fromLTRB(18, 12, 18, 0),
-            // padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+            padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 8.0),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
                     Expanded(
                       child: Text(
                         item.name,
-                        maxLines: 1 ,
+                        maxLines: 1,
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 16.0,
                           color: _color,
                           fontWeight: FontWeight.bold,
                         ),
@@ -453,7 +440,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                                     ? '${timeago.format(item.checkDate, locale: 'ko')}'
                                     : '',
                                 style: TextStyle(
-                                  fontSize: 13.0,
+                                  fontSize: 11.0,
                                   color: FitwithColors.getPrimaryColor(),
                                 ),
                               ),
@@ -462,9 +449,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                         : Container(),
                   ],
                 ),
-                SizedBox(height: 7.0),
                 Container(
-                  height: 46.0,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -474,7 +459,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            fontSize: 14.0,
+                            fontSize: 12.0,
                             color: _color,
                           ),
                         ),
@@ -486,8 +471,10 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                         // alignment: Alignment.bottomLeft,
                         child: ReorderableDragStartListener(
                           index: index,
-                          child: Image.asset("assets/change2.png" ,
-                            width: 25,
+                          child: Image.asset(
+                            "assets/change2.png",
+                            color: FitwithColors.getSecondary200(),
+                            width: 15.0,
                           ),
                         ),
                       ),
@@ -500,13 +487,18 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
         )
       ],
     );
-
   }
 
   Widget _buildDialog({CheckList item, int index}) {
     final int maxLength = 20;
     var _titleController = TextEditingController();
     var _contentController = TextEditingController();
+    bool _editable = true;
+    if (item != null) {
+      if (item.isEditable) {
+        _editable = false;
+      }
+    }
     _deviceSize = MediaQuery.of(context).size;
     if (item != null) {
       _titleController.text = item.name;
@@ -530,7 +522,9 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 TextFormField(
+                  enabled: _editable,
                   maxLength: maxLength,
+                  maxLines: _editable ? 1 : null,
                   validator: (_titleController) {
                     if (_titleController.isEmpty) {
                       return '* 제목은 필수 항목입니다';
@@ -582,7 +576,8 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                 SizedBox(height: 12),
                 Container(
                   child: TextField(
-                    maxLines: 5,
+                    enabled: _editable,
+                    maxLines: _editable ? 5 : null,
                     controller: _contentController,
                     style: TextStyle(fontSize: 16.0),
                     decoration: InputDecoration(

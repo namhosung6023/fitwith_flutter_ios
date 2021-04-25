@@ -1,9 +1,8 @@
+import 'package:fitwith/utils/utils_common.dart';
+import 'package:fitwith/views/community/page_write.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fitwith/config/colors.dart';
-
-import '../../config/colors.dart';
-import '../../config/colors.dart';
 
 class CommunityPage extends StatefulWidget {
   @override
@@ -11,7 +10,8 @@ class CommunityPage extends StatefulWidget {
 }
 
 class _CommunityPageState extends State<CommunityPage> {
-  String dropdownValue = '사용 후기';
+  List<String> _dropdownMenu = ['전체', '버그신고', '요구사항', '사용후기'];
+  String _dropdownValue = '전체';
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +27,7 @@ class _CommunityPageState extends State<CommunityPage> {
             children: [
               Text('게시판'),
               InkWell(
-                onTap: () {
-                  print('글작성');
-                },
+                onTap: () => CommonUtils.movePage(context, WritePage()),
                 child: Row(
                   children: [
                     Icon(
@@ -52,12 +50,8 @@ class _CommunityPageState extends State<CommunityPage> {
           DropdownButtonFormField(
             isDense: true,
             decoration: InputDecoration(
-              prefixIcon: Icon(
-                Icons.comment,
-                color: FitwithColors.getSecondary200(),
-              ),
               contentPadding:
-                  EdgeInsets.symmetric(vertical: 0.0, horizontal: 5.0),
+                  EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8.0)),
                 borderSide: BorderSide(
@@ -66,15 +60,15 @@ class _CommunityPageState extends State<CommunityPage> {
                 ),
               ),
             ),
-            value: dropdownValue,
+            value: _dropdownValue,
             icon: Icon(Icons.keyboard_arrow_down),
-            items: ['사용 후기']
+            items: _dropdownMenu
                 .map((e) => DropdownMenuItem(
                       value: e,
                       child: Text(e),
                     ))
                 .toList(),
-            onChanged: (value) => setState(() => dropdownValue = value),
+            onChanged: (value) => setState(() => _dropdownValue = value),
           ),
           SizedBox(height: 20.0),
           _buildCommunityCard(),
