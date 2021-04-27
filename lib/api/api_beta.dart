@@ -15,11 +15,13 @@ Future<List> getBetaList() async {
     if (response.data['data'] != null) {
       if (response.data['data'].length > 0) {
         for (int i = 0; i < response.data['data'].length; i++) {
+          print(response.data['data']);
           Beta _beta = Beta(
             response.data['data'][i]['_id'],
             response.data['data'][i]['title'],
             response.data['data'][i]['contents'],
             response.data['data'][i]['type'],
+            response.data['data'][i]['user']['_id'],
             response.data['data'][i]['user']['username'],
             DateTime.parse(response.data['data'][i]['createdAt']),
           );

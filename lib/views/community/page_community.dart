@@ -108,7 +108,7 @@ class _CommunityPageState extends State<CommunityPage> {
 
   Widget _buildCommunityCard(dynamic item) {
     timeago.setLocaleMessages('ko', timeago.KoMessages());
-    print(item.username);
+    print(item.userId);
     return Column(
       children: [
         Container(
