@@ -82,11 +82,14 @@ class _MemberChecklistState extends State<MemberChecklist> {
                               SizedBox(height: 10.0),
                               ...user.dietList?.map(
                                 (diet) {
+                                  print(diet.name);
                                   int _index = user.dietList.indexOf(diet);
-                                  return CustomChecklistItem(
-                                    index: _index,
-                                    item: diet,
-                                  );
+                                  return diet.name != ''
+                                      ? CustomChecklistItem(
+                                          index: _index,
+                                          item: diet,
+                                        )
+                                      : Container();
                                 },
                               ),
                             ],
