@@ -403,6 +403,31 @@ class Trainer extends ChangeNotifier {
     notifyListeners();
   }
 
+  void deleteDietList(
+      String checklistId, String dietId, int index) async {
+    if (dio == null) {
+      dio = Dio(options);
+    }
+
+    if (_token == null) {
+      print('deletedietlist: token is null');
+    } else {
+      try {
+        dio.options.headers['accesstoken'] = _token;
+        Response response = await dio.delete(
+            'premium/checklist/dietlist/delete/$_selectedUserPremiumId',
+            data: {
+              "dietId": dietId,
+              "checklistId": checklistId,
+            });
+      } on DioError catch (e) {
+        print('deletedietlist: ${e.message}');
+      }
+    }
+    _workoutList.removeAt(index);
+    notifyListeners();
+  }
+
   // void addDietList(String name, String contents, int time) {
   //   for(int i = 0; i < 4; i++) {
   //
