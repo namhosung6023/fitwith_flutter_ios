@@ -6,7 +6,8 @@ class Beta {
   String userId;
   String username;
   DateTime createdAt;
+  String avatar;
 
   Beta(this.id, this.title, this.contents, this.type, this.userId,
-      this.username, this.createdAt);
+      this.username, this.createdAt, this.avatar);
 }

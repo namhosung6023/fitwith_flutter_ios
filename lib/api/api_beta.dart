@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:fitwith/config/env.dart';
 import 'package:fitwith/models/model_beta.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Dio dio;
 BaseOptions options = dioOptions;
@@ -24,6 +25,7 @@ Future<List> getBetaList() async {
             response.data['data'][i]['user']['_id'],
             response.data['data'][i]['user']['username'],
             DateTime.parse(response.data['data'][i]['createdAt']),
+            response.data['data'][i]['user']['avatar']
           );
           _betaList.add(_beta);
         }
@@ -34,5 +36,41 @@ Future<List> getBetaList() async {
     data['success'] = false;
     data['message'] = e.message;
     return [data];
+  }
+}
+
+Future<void> postBetaList(String title, String contents, String type) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String _token = prefs.getString('token');
+  print('postBetaList 실행');
+  if (dio == null) dio = Dio(options);
+  try {
+    dio.options.headers['accesstoken'] = _token;
+    response = await dio.post('beta/register', data: {
+      // "userId" : userId,
+      "title" : title,
+      "contents" : contents,
+      "type" : type,
+    });
+  } on DioError catch (e) {
+    print('postBetaList: ${e.message}');
+  }
+}
+
+Future<void> deleteCommunity(String title, String contents, String type) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String _token = prefs.getString('token');
+  print('postBetaList 실행');
+  if (dio == null) dio = Dio(options);
+  try {
+    dio.options.headers['accesstoken'] = _token;
+    response = await dio.post('beta/register', data: {
+      // "userId" : userId,
+      "title" : title,
+      "contents" : contents,
+      "type" : type,
+    });
+  } on DioError catch (e) {
+    print('postBetaList: ${e.message}');
   }
 }

@@ -11,6 +11,7 @@ import 'package:mime_type/mime_type.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class User extends ChangeNotifier {
+  static String _userId;
   static String _premiumId;
   static DateTime _startDate;
   static DateTime _endDate;
@@ -34,6 +35,7 @@ class User extends ChangeNotifier {
   static BodyLog _bodyLog;
   static bool _isScroll;
 
+  String get userId => _userId;
   String get premiumId => _premiumId ?? '';
   DateTime get startDate => _startDate;
   DateTime get endDate => _endDate;

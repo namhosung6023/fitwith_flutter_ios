@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Container(
                 width: 250.0,
-                child: Image.asset('assets/logos/fitwith_blue.png'),
+                child: Image.asset('assets/logo_blue.png', height: 40,),
               ),
               SizedBox(height: 50.0),
               Container(

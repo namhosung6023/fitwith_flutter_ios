@@ -1,3 +1,4 @@
+import 'package:fitwith/api/api_beta.dart';
 import 'package:fitwith/config/colors.dart';
 import 'package:fitwith/widgets/custom_loading.dart';
 import 'package:fitwith/widgets/custom_scaffold.dart';
@@ -24,6 +25,10 @@ class _WritePageState extends State<WritePage> {
           buildScaffold(
             context,
             _buildBody(),
+            appBar: AppBar(
+              backgroundColor: FitwithColors.getPrimaryColor(),
+              title: Text('글 작성하기'),
+            )
           ),
           _loading ? buildLoading() : Container()
         ],
@@ -34,7 +39,6 @@ class _WritePageState extends State<WritePage> {
   Widget _buildBody() {
     var _titleController = TextEditingController();
     var _contentController = TextEditingController();
-
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: Form(
@@ -43,7 +47,7 @@ class _WritePageState extends State<WritePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
-              maxLength: 20,
+              // maxLength: 20,
               validator: (_titleController) {
                 if (_titleController.isEmpty) {
                   return '* 제목은 필수 항목입니다';
@@ -53,7 +57,7 @@ class _WritePageState extends State<WritePage> {
               controller: _titleController,
               style: TextStyle(fontSize: 16.0),
               decoration: InputDecoration(
-                counterText: "",
+                // counterText: "",
                 focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(6.0),
                     borderSide: BorderSide(
@@ -132,7 +136,10 @@ class _WritePageState extends State<WritePage> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    postBetaList(_titleController.text, _contentController.text, _dropdownValue);
+                    print(_dropdownValue);
+                  },
                   child: Container(
                     padding: EdgeInsets.only(
                       right: 0.0,

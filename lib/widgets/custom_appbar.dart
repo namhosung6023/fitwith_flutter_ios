@@ -47,7 +47,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
       backgroundColor: widget.backgroundColor,
       // backgroundColor: Colors.red,
       title: Image.asset(
-        'assets/logos/fitwith_blue.png',
+        'assets/logo_blue.png',
         height: 20.0,
       ),
       centerTitle: true,
