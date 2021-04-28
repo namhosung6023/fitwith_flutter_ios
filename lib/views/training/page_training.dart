@@ -136,8 +136,10 @@ class _TrainingPageState extends State<TrainingPage> {
                 ],
               ),
             )
-            : Center(
-              child: Text('메인페이지'),
+            : Container(
+              child: Center(
+                child: Image.asset('assets/comingsoon_5.png',height: 350,)
+              ),
             );
           });
   }

@@ -4,14 +4,17 @@ import 'package:fitwith/models/model_beta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Dio dio;
+List _betaList = [];
 BaseOptions options = dioOptions;
 Response response;
 Map<String, dynamic> data = {'success': '', 'message': ''};
 
-Future<List> getBetaList() async {
+Future<List> getBetaList(type) async {
+  print('베타리스트실행');
+  print(type);
   if (dio == null) dio = Dio(options);
   try {
-    response = await dio.get('beta/list');
+    response = await dio.get('beta/list', queryParameters: {'type': type});
     List _betaList = [];
     if (response.data['data'] != null) {
       if (response.data['data'].length > 0) {
@@ -57,20 +60,18 @@ Future<void> postBetaList(String title, String contents, String type) async {
   }
 }
 
-Future<void> deleteCommunity(String title, String contents, String type) async {
+Future<void> deleteCommunity(String _id,) async {
+  print(_id);
+  print('삭제하는 버튼 실행중');
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String _token = prefs.getString('token');
   print('postBetaList 실행');
   if (dio == null) dio = Dio(options);
   try {
     dio.options.headers['accesstoken'] = _token;
-    response = await dio.post('beta/register', data: {
-      // "userId" : userId,
-      "title" : title,
-      "contents" : contents,
-      "type" : type,
-    });
+    response = await dio.delete('beta/delete/$_id' );
   } on DioError catch (e) {
     print('postBetaList: ${e.message}');
   }
+  // _betaList.removeAt(index);
 }

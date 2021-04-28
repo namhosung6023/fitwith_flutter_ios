@@ -46,6 +46,30 @@ class _WritePageState extends State<WritePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            DropdownButtonFormField(
+              isDense: true,
+              hint: Text('선택하세요'),
+              decoration: InputDecoration(
+                contentPadding:
+                EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  borderSide: BorderSide(
+                    color: FitwithColors.getSecondary200(),
+                    width: 1.0,
+                  ),
+                ),
+              ),
+              value: _dropdownValue,
+              icon: Icon(Icons.keyboard_arrow_down),
+              items: _dropdownMenu
+                  .map((e) => DropdownMenuItem(
+                value: e,
+                child: Text(e),
+              ))
+                  .toList(),
+              onChanged: (value) => setState(() => _dropdownValue = value),
+            ),
             TextFormField(
               // maxLength: 20,
               validator: (_titleController) {
@@ -88,30 +112,30 @@ class _WritePageState extends State<WritePage> {
               ),
             ),
             SizedBox(height: 12),
-            DropdownButtonFormField(
-              isDense: true,
-              hint: Text('선택하세요'),
-              decoration: InputDecoration(
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                  borderSide: BorderSide(
-                    color: FitwithColors.getSecondary200(),
-                    width: 1.0,
-                  ),
-                ),
-              ),
-              value: _dropdownValue,
-              icon: Icon(Icons.keyboard_arrow_down),
-              items: _dropdownMenu
-                  .map((e) => DropdownMenuItem(
-                        value: e,
-                        child: Text(e),
-                      ))
-                  .toList(),
-              onChanged: (value) => setState(() => _dropdownValue = value),
-            ),
+            // DropdownButtonFormField(
+            //   isDense: true,
+            //   hint: Text('선택하세요'),
+            //   decoration: InputDecoration(
+            //     contentPadding:
+            //         EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
+            //     enabledBorder: OutlineInputBorder(
+            //       borderRadius: BorderRadius.all(Radius.circular(8.0)),
+            //       borderSide: BorderSide(
+            //         color: FitwithColors.getSecondary200(),
+            //         width: 1.0,
+            //       ),
+            //     ),
+            //   ),
+            //   value: _dropdownValue,
+            //   icon: Icon(Icons.keyboard_arrow_down),
+            //   items: _dropdownMenu
+            //       .map((e) => DropdownMenuItem(
+            //             value: e,
+            //             child: Text(e),
+            //           ))
+            //       .toList(),
+            //   onChanged: (value) => setState(() => _dropdownValue = value),
+            // ),
             SizedBox(height: 12),
             TextFormField(
               maxLines: 5,
@@ -137,6 +161,7 @@ class _WritePageState extends State<WritePage> {
               children: [
                 InkWell(
                   onTap: () {
+                    Navigator.of(context).pop();
                     postBetaList(_titleController.text, _contentController.text, _dropdownValue);
                     print(_dropdownValue);
                   },

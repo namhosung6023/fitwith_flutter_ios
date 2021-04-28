@@ -52,28 +52,28 @@ Widget buildBottomNavigationBar(BuildContext context) {
               ),
               label: '트레이닝',
             ),
-            BottomNavigationBarItem(
-              icon: Padding(
-                padding: EdgeInsets.symmetric(vertical: 4.0),
-                child: SvgPicture.asset(
-                  value.index == 3
-                      ? 'assets/icons/navbar/shop_blue.svg'
-                      : 'assets/icons/navbar/shop_gray.svg',
-                ),
-              ),
-              label: '쇼핑몰',
-            ),
-            BottomNavigationBarItem(
-              icon: Padding(
-                padding: EdgeInsets.symmetric(vertical: 4.0),
-                child: SvgPicture.asset(
-                  value.index == 4
-                      ? 'assets/icons/navbar/mypage_blue.svg'
-                      : 'assets/icons/navbar/mypage_gray.svg',
-                ),
-              ),
-              label: '마이페이지',
-            )
+            // BottomNavigationBarItem(
+            //   icon: Padding(
+            //     padding: EdgeInsets.symmetric(vertical: 4.0),
+            //     child: SvgPicture.asset(
+            //       value.index == 3
+            //           ? 'assets/icons/navbar/shop_blue.svg'
+            //           : 'assets/icons/navbar/shop_gray.svg',
+            //     ),
+            //   ),
+            //   label: '쇼핑몰',
+            // ),
+            // BottomNavigationBarItem(
+            //   icon: Padding(
+            //     padding: EdgeInsets.symmetric(vertical: 4.0),
+            //     child: SvgPicture.asset(
+            //       value.index == 4
+            //           ? 'assets/icons/navbar/mypage_blue.svg'
+            //           : 'assets/icons/navbar/mypage_gray.svg',
+            //     ),
+            //   ),
+            //   label: '마이페이지',
+            // )
           ],
         ),
       );

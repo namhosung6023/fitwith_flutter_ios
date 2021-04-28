@@ -72,6 +72,7 @@ class User extends ChangeNotifier {
   BaseOptions options = dioOptions;
 
   Future<String> getUser() async {
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _token = prefs.getString('token');
     print('token: $_token');
@@ -82,11 +83,16 @@ class User extends ChangeNotifier {
       return 'token is null';
     } else {
       try {
+
         dio.options.headers['accesstoken'] = _token;
         Response response = await dio.get('accounts/profile');
+        print(response.data['data']['_id']);
 
         if (response.data['data']['trainer'] != null)
           _trainerId = response.data['data']['trainer'] as String;
+
+        if (response.data['data']['_id'] != null)
+          _userId = response.data['data']['_id'] as String;
 
         if (response.data['data']['premiumTrainer'].length > 0)
           _premiumId =

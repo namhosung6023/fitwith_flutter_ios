@@ -20,12 +20,14 @@ class _CommunityPageState extends State<CommunityPage> {
   Size _deviceSize;
   bool _loading = true;
   List _listItem = [];
+  // String type = ;
 
   Future<void> _getBetaList() async {
-    _listItem = await getBetaList();
+    print(_dropdownValue);
+    _listItem = await getBetaList(_dropdownValue);
+
     setState(() => _loading = false);
   }
-
   List<String> _dropdownMenu = ['전체', '버그신고', '요구사항', '사용후기'];
   String _dropdownValue = '전체';
 
@@ -92,19 +94,31 @@ class _CommunityPageState extends State<CommunityPage> {
                             child: Text(e),
                           ))
                       .toList(),
-                  onChanged: (value) => setState(() => _dropdownValue = value),
+                  onChanged: (value) {
+                    setState(() => _dropdownValue = value);
+                    _getBetaList();
+                  }
                 ),
                 SizedBox(height: 20.0),
                 Expanded(
-                  child: ListView(
-                    children: [
-                      ..._listItem
-                          .map((item) => _buildCommunityCard(item))
-                          .toList(),
-                    ],
-                  ),
-                ),
-
+                        child: ListView(
+                          children: [
+                            ..._listItem
+                                .map((item) => _buildCommunityCard(item))
+                                .toList(),
+                          ],
+                        ),
+                      ),
+                // _Drpdown(_listItem),
+                // Expanded(
+                //    child: ListView(
+                //      children: [
+                //      ..._listItem
+                //            .map((item) => _buildCommunityCard(item))
+                //            .toList(),
+                //      ],
+                //    ),
+                //  ),
                 // _buildCommunityCard(),
               ],
             ),
@@ -117,7 +131,8 @@ class _CommunityPageState extends State<CommunityPage> {
     return Column(
       children: [
         InkWell(
-          onTap: () => CommonUtils.movePage(context, CommunityDetailPage(item: item)),
+          onTap: () =>
+              CommonUtils.movePage(context, CommunityDetailPage(item: item)),
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 12.0),
             child: Column(
@@ -187,7 +202,7 @@ class _CommunityPageState extends State<CommunityPage> {
     _deviceSize = MediaQuery.of(context).size;
     return AlertDialog(
       contentPadding:
-      EdgeInsets.only(top: 25.0, left: 20.0, right: 20.0, bottom: 15.0),
+          EdgeInsets.only(top: 25.0, left: 20.0, right: 20.0, bottom: 15.0),
       buttonPadding: EdgeInsets.all(0.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
@@ -210,11 +225,11 @@ class _CommunityPageState extends State<CommunityPage> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(6.0),
                         borderSide:
-                        BorderSide(color: FitwithColors.getPrimaryColor())),
+                            BorderSide(color: FitwithColors.getPrimaryColor())),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(6.0),
                         borderSide:
-                        BorderSide(color: FitwithColors.getPrimaryColor())),
+                            BorderSide(color: FitwithColors.getPrimaryColor())),
                     contentPadding: EdgeInsets.all(10.0),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey, width: 1.0),
@@ -226,218 +241,218 @@ class _CommunityPageState extends State<CommunityPage> {
                 SizedBox(height: 12),
                 _editable
                     ? TextField(
-                  maxLines: 5,
-                  controller: _contentController,
-                  style: TextStyle(fontSize: 16.0),
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(6.0),
-                        borderSide: BorderSide(
-                            color: FitwithColors.getPrimaryColor())),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: Colors.grey, width: 1.0),
-                      borderRadius: BorderRadius.circular(6.0),
-                    ),
-                    contentPadding: EdgeInsets.all(10.0),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6.0),
-                    ),
-                  ),
-                )
+                        maxLines: 5,
+                        controller: _contentController,
+                        style: TextStyle(fontSize: 16.0),
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(6.0),
+                              borderSide: BorderSide(
+                                  color: FitwithColors.getPrimaryColor())),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 1.0),
+                            borderRadius: BorderRadius.circular(6.0),
+                          ),
+                          contentPadding: EdgeInsets.all(10.0),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(6.0),
+                          ),
+                        ),
+                      )
                     : Container(
-                  constraints: BoxConstraints(maxHeight: 300.0),
-                  width: double.infinity,
-                  padding: EdgeInsets.all(10.0),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey, width: 0.5),
-                    borderRadius: BorderRadius.circular(6.0),
-                  ),
-                  child: SingleChildScrollView(
-                    child: Text(_contentController.text),
-                  ),
-                ),
+                        constraints: BoxConstraints(maxHeight: 300.0),
+                        width: double.infinity,
+                        padding: EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 0.5),
+                          borderRadius: BorderRadius.circular(6.0),
+                        ),
+                        child: SingleChildScrollView(
+                          child: Text(_contentController.text),
+                        ),
+                      ),
                 SizedBox(height: 18.0),
                 _editable
                     ? Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                        InkWell(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: Container(
-                        padding: EdgeInsets.only(
-                          right: 10.0,
-                          left: 0.0,
-                          top: 5.0,
-                          bottom: 5.0,
-                        ),
-                        child: Text(
-                          '확인',
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            color: FitwithColors.getSecondary200(),
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          InkWell(
+                            onTap: () => Navigator.of(context).pop(),
+                            child: Container(
+                              padding: EdgeInsets.only(
+                                right: 10.0,
+                                left: 0.0,
+                                top: 5.0,
+                                bottom: 5.0,
+                              ),
+                              child: Text(
+                                '확인',
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  color: FitwithColors.getSecondary200(),
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
-                    // Row(
-                    //   children: [
-                    //     InkWell(
-                    //       onTap: () {
-                    //         showDialog(
-                    //           context: context,
-                    //           builder: (context) => buildConfirmDialog(
-                    //             context,
-                    //             Center(
-                    //               child: Text(
-                    //                 '정말 삭제하시겠습니까?',
-                    //                 style: TextStyle(
-                    //                     color: FitwithColors
-                    //                         .getPrimaryColor(),
-                    //                     fontWeight: FontWeight.bold),
-                    //               ),
-                    //             ),
-                    //             Container(
-                    //               height: 40.0,
-                    //               child: Center(
-                    //                 child: Column(
-                    //                   children: [
-                    //                     Text(
-                    //                       '삭제하신 후에는 복구가 어려우니',
-                    //                       style: TextStyle(
-                    //                         fontSize: 13,
-                    //                         color: FitwithColors
-                    //                             .getSecondary300(),
-                    //                       ),
-                    //                     ),
-                    //                     Text(
-                    //                       '다시한번 확인해주시기 바랍니다.',
-                    //                       style: TextStyle(
-                    //                         fontSize: 13,
-                    //                         color: FitwithColors
-                    //                             .getSecondary300(),
-                    //                       ),
-                    //                     ),
-                    //                   ],
-                    //                 ),
-                    //               ),
-                    //             ),
-                    //                 () {
-                    //               if (index != null) {
-                    //                 Provider.of<Trainer>(context,
-                    //                     listen: false)
-                    //                     .deleteWorkoutList(item.outerId,
-                    //                     item.innerId, index);
-                    //               } else {
-                    //                 Provider.of<Trainer>(context,
-                    //                     listen: false)
-                    //                     .updateDietList(
-                    //                     '', '', item.time);
-                    //               }
-                    //               Navigator.of(context).pop();
-                    //             },
-                    //           ),
-                    //         );
-                    //       },
-                    //       child: Container(
-                    //         padding: EdgeInsets.all(5.0),
-                    //         child: Text(
-                    //           '삭제',
-                    //           style: TextStyle(
-                    //             fontSize: 16.0,
-                    //             color: FitwithColors.getBasicOrange(),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     SizedBox(width: 5.0),
-                    //     InkWell(
-                    //       onTap: () {
-                    //         if (_formKey.currentState.validate()) {
-                    //           ScaffoldMessenger.of(context).showSnackBar(
-                    //               SnackBar(content: Text('저장됨')));
-                    //         }
-                    //         print('index');
-                    //         print(index);
-                    //         if (index == null) {
-                    //           Provider.of<Trainer>(context, listen: false)
-                    //               .addWorkoutList(
-                    //             _titleController.text,
-                    //             _contentController.text,
-                    //             false,
-                    //           );
-                    //         } else {
-                    //           if (item.time == null) {
-                    //             Provider.of<Trainer>(context,
-                    //                 listen: false)
-                    //                 .updateWorkoutList(
-                    //               index,
-                    //               _titleController.text,
-                    //               _contentController.text,
-                    //             );
-                    //           } else {
-                    //             print(item.name == '');
-                    //             // if (item.name == '') {
-                    //             //   Provider.of<Trainer>(context, listen: false)
-                    //             //       .addDietList(_titleController.text,
-                    //             //       _contentController.text, index);
-                    //             // } else
-                    //             //
-                    //             //
-                    //             // {
-                    //             Provider.of<Trainer>(context,
-                    //                 listen: false)
-                    //                 .updateDietList(_titleController.text,
-                    //                 _contentController.text, index);
-                    //             // }
-                    //           }
-                    //         }
-                    //         if (_titleController.text != '')
-                    //           Navigator.of(context).pop();
-                    //       },
-                    //       child: Container(
-                    //         padding: EdgeInsets.only(
-                    //           right: 0.0,
-                    //           left: 10.0,
-                    //           top: 5.0,
-                    //           bottom: 5.0,
-                    //         ),
-                    //         child: Text(
-                    //           '완료',
-                    //           style: TextStyle(
-                    //             fontSize: 16.0,
-                    //             color: FitwithColors.getPrimaryColor(),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                  ],
-                )
+                          // Row(
+                          //   children: [
+                          //     InkWell(
+                          //       onTap: () {
+                          //         showDialog(
+                          //           context: context,
+                          //           builder: (context) => buildConfirmDialog(
+                          //             context,
+                          //             Center(
+                          //               child: Text(
+                          //                 '정말 삭제하시겠습니까?',
+                          //                 style: TextStyle(
+                          //                     color: FitwithColors
+                          //                         .getPrimaryColor(),
+                          //                     fontWeight: FontWeight.bold),
+                          //               ),
+                          //             ),
+                          //             Container(
+                          //               height: 40.0,
+                          //               child: Center(
+                          //                 child: Column(
+                          //                   children: [
+                          //                     Text(
+                          //                       '삭제하신 후에는 복구가 어려우니',
+                          //                       style: TextStyle(
+                          //                         fontSize: 13,
+                          //                         color: FitwithColors
+                          //                             .getSecondary300(),
+                          //                       ),
+                          //                     ),
+                          //                     Text(
+                          //                       '다시한번 확인해주시기 바랍니다.',
+                          //                       style: TextStyle(
+                          //                         fontSize: 13,
+                          //                         color: FitwithColors
+                          //                             .getSecondary300(),
+                          //                       ),
+                          //                     ),
+                          //                   ],
+                          //                 ),
+                          //               ),
+                          //             ),
+                          //                 () {
+                          //               if (index != null) {
+                          //                 Provider.of<Trainer>(context,
+                          //                     listen: false)
+                          //                     .deleteWorkoutList(item.outerId,
+                          //                     item.innerId, index);
+                          //               } else {
+                          //                 Provider.of<Trainer>(context,
+                          //                     listen: false)
+                          //                     .updateDietList(
+                          //                     '', '', item.time);
+                          //               }
+                          //               Navigator.of(context).pop();
+                          //             },
+                          //           ),
+                          //         );
+                          //       },
+                          //       child: Container(
+                          //         padding: EdgeInsets.all(5.0),
+                          //         child: Text(
+                          //           '삭제',
+                          //           style: TextStyle(
+                          //             fontSize: 16.0,
+                          //             color: FitwithColors.getBasicOrange(),
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     SizedBox(width: 5.0),
+                          //     InkWell(
+                          //       onTap: () {
+                          //         if (_formKey.currentState.validate()) {
+                          //           ScaffoldMessenger.of(context).showSnackBar(
+                          //               SnackBar(content: Text('저장됨')));
+                          //         }
+                          //         print('index');
+                          //         print(index);
+                          //         if (index == null) {
+                          //           Provider.of<Trainer>(context, listen: false)
+                          //               .addWorkoutList(
+                          //             _titleController.text,
+                          //             _contentController.text,
+                          //             false,
+                          //           );
+                          //         } else {
+                          //           if (item.time == null) {
+                          //             Provider.of<Trainer>(context,
+                          //                 listen: false)
+                          //                 .updateWorkoutList(
+                          //               index,
+                          //               _titleController.text,
+                          //               _contentController.text,
+                          //             );
+                          //           } else {
+                          //             print(item.name == '');
+                          //             // if (item.name == '') {
+                          //             //   Provider.of<Trainer>(context, listen: false)
+                          //             //       .addDietList(_titleController.text,
+                          //             //       _contentController.text, index);
+                          //             // } else
+                          //             //
+                          //             //
+                          //             // {
+                          //             Provider.of<Trainer>(context,
+                          //                 listen: false)
+                          //                 .updateDietList(_titleController.text,
+                          //                 _contentController.text, index);
+                          //             // }
+                          //           }
+                          //         }
+                          //         if (_titleController.text != '')
+                          //           Navigator.of(context).pop();
+                          //       },
+                          //       child: Container(
+                          //         padding: EdgeInsets.only(
+                          //           right: 0.0,
+                          //           left: 10.0,
+                          //           top: 5.0,
+                          //           bottom: 5.0,
+                          //         ),
+                          //         child: Text(
+                          //           '완료',
+                          //           style: TextStyle(
+                          //             fontSize: 16.0,
+                          //             color: FitwithColors.getPrimaryColor(),
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+                        ],
+                      )
                     : Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    InkWell(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: Container(
-                        padding: EdgeInsets.only(
-                          right: 0.0,
-                          left: 10.0,
-                          top: 5.0,
-                          bottom: 5.0,
-                        ),
-                        child: Text(
-                          '확인',
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            color: FitwithColors.getPrimaryColor(),
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          InkWell(
+                            onTap: () => Navigator.of(context).pop(),
+                            child: Container(
+                              padding: EdgeInsets.only(
+                                right: 0.0,
+                                left: 10.0,
+                                top: 5.0,
+                                bottom: 5.0,
+                              ),
+                              child: Text(
+                                '확인',
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  color: FitwithColors.getPrimaryColor(),
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
               ],
             ),
           );

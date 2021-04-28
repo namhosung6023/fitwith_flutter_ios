@@ -1,8 +1,14 @@
+import 'package:fitwith/api/api_beta.dart';
 import 'package:fitwith/config/colors.dart';
 import 'package:fitwith/models/model_beta.dart';
+import 'package:fitwith/providers/provider_user.dart';
+import 'package:fitwith/utils/utils_common.dart';
+import 'package:fitwith/views/community/page_community.dart';
+import 'package:fitwith/views/community/page_write.dart';
 import 'package:fitwith/widgets/custom_loading.dart';
 import 'package:fitwith/widgets/custom_scaffold.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CommunityDetailPage extends StatefulWidget {
   final item;
@@ -49,7 +55,12 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
             children: [
               Row(
                 children: [
-                  IconButton(icon: Icon(Icons.arrow_back_ios_sharp), onPressed: (){}),
+                  IconButton(icon: Icon(Icons.arrow_back_ios_sharp), onPressed: (){
+                    print('11111111111111111111111111111111111111111111111111111111111111111111');
+                    print(widget.item.userId );
+                    print( Provider.of<User>(context,listen: false).userId );
+                    Navigator.pop(context);
+                  }),
                   Text('뒤로'),
                 ],
               ),
@@ -67,17 +78,22 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
                       Text(widget.item.createdAt.toString()),
                     ],
                   ),
-                  InkWell(
-                    // onTap: ,
-                    child: Text('삭제'),
-                  )
+                  widget.item.userId == Provider.of<User>(context,listen: false).userId ? InkWell(
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        deleteCommunity(widget.item.id);
+                      },
+                      child: Text('삭제'),
+                    ),
+                  ): Container(),
                 ],
               ),
               SizedBox(height: 10,),
               Container(
+                width: double.infinity,
                 child: Text(widget.item.contents),
                padding : EdgeInsets.symmetric( vertical: 20 ),
-                // padding: const EdgeInsets.fromLTRB(0, 20, 200, 20),
                 decoration: BoxDecoration(
                     border: Border(
                       top: BorderSide( color: FitwithColors.getSecondary200()),
@@ -85,7 +101,37 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
                     )
                     // border: Border.all(color: Colors.blueAccent)
                 ),
-              )
+              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     InkWell(
+              //       child: OutlineButton(
+              //         shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(10.0)),
+              //         onPressed: ()=> CommonUtils.movePage(context, CommunityPage()),
+              //         borderSide: BorderSide(
+              //             color: FitwithColors.getPrimaryColor()
+              //         ),
+              //         child: Text('목록',
+              //           style: TextStyle(
+              //               color: FitwithColors.getPrimaryColor()),
+              //         ),
+              //       )
+              //     ),
+              //     InkWell(
+              //         child: TextButton(
+              //           onPressed: ()=> CommonUtils.movePage(context, WritePage()),
+              //             style: ButtonStyle(
+              //                 backgroundColor: MaterialStateProperty.all(FitwithColors.getPrimaryColor())
+              //             ),
+              //           child: Text('글 작성하기',
+              //             style: TextStyle(color: Colors.white),
+              //           ),
+              //         )
+              //     )
+              //   ],
+              // ),
+
             ],
           ),
         ),
