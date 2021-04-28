@@ -35,11 +35,11 @@ class _TrainerSelectedMemberState extends State<TrainerSelectedMember>
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(45.0),
+        preferredSize: Size.fromHeight(55.0),
         child: AppBar(
-          titleSpacing: -10.0,
+          titleSpacing: -5.0,
           leading: IconButton(
-            icon: Icon(Icons.chevron_left),
+            icon: Icon(Icons.chevron_left, size: 35,),
             onPressed: () => Navigator.of(context).pop(),
           ),
           title: Consumer<Trainer>(builder: (context, value, child) {
@@ -53,16 +53,16 @@ class _TrainerSelectedMemberState extends State<TrainerSelectedMember>
               children: [
                 Text(
                   _name,
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   ' (${_gender == 'M' ? '남' : '여'}, $_age)',
                   style:
-                      TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal),
+                      TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal),
                 ),
                 Text(
                   '  |  $_days일째',
-                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
               ],
             );
@@ -74,7 +74,7 @@ class _TrainerSelectedMemberState extends State<TrainerSelectedMember>
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 10.0),
+          SizedBox(height: 12.0),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 12.0),
             child: Row(
@@ -126,7 +126,7 @@ class _TrainerSelectedMemberState extends State<TrainerSelectedMember>
           children: [
             Icon(
               Icons.calendar_today_rounded,
-              size: 16.0,
+              size: 17.0,
               color: FitwithColors.getSecondary300(),
             ),
             SizedBox(width: 6.0),
@@ -135,7 +135,7 @@ class _TrainerSelectedMemberState extends State<TrainerSelectedMember>
                 builder: (context, value, child) {
                   return Text(
                     '${DateFormat('yyyy.MM.dd').format(value.selectedDay)}',
-                    style: TextStyle(color: FitwithColors.getSecondary300()),
+                    style: TextStyle(color: FitwithColors.getSecondary300(), fontSize: 16),
                   );
                 },
               ),
@@ -156,8 +156,8 @@ class _TrainerSelectedMemberState extends State<TrainerSelectedMember>
       splashColor: Colors.transparent,
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 8.0),
-        height: 23.0,
-        width: 56.0,
+        height: 25.0,
+        width: 60.0,
         decoration: BoxDecoration(
           border: Border.all(
             color: FitwithColors.getSecondary300(),
@@ -169,7 +169,7 @@ class _TrainerSelectedMemberState extends State<TrainerSelectedMember>
             child: Text(
           'TODAY',
           style: TextStyle(
-            fontSize: 11.0,
+            fontSize: 13.0,
             color: FitwithColors.getSecondary300(),
           ),
         )),

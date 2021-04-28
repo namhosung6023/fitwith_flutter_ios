@@ -55,7 +55,7 @@ class _PremiumTrainerPageState extends State<PremiumTrainerPage> {
                           '회원 관리',
                           style: TextStyle(
                             color: FitwithColors.getSecondary600(),
-                            fontSize: 18.0,
+                            fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -65,20 +65,20 @@ class _PremiumTrainerPageState extends State<PremiumTrainerPage> {
                           children: [
                             Text('전체',
                               style: TextStyle(
-                                  fontSize: 14
+                                  fontSize: 17
                               ),),
                             Text(' ${value.memberList.length}',
                               style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 19,
                                 fontWeight: FontWeight.bold,
                               ),),
                             Text('명',
                             style: TextStyle(
-                              fontSize: 14
+                              fontSize: 17
                             ),),
                           ],
                         ),
-                        SizedBox(height: 10.0),
+                        SizedBox(height: 15.0),
                         ...value.memberList?.map(
                           (member) {
                             int index = value.memberList.indexOf(member);
@@ -98,7 +98,7 @@ class _PremiumTrainerPageState extends State<PremiumTrainerPage> {
                               '회원 관리',
                               style: TextStyle(
                                   color: Color(0xff222224),
-                                  fontSize: 18.0,
+                                  fontSize: 20.0,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -157,7 +157,7 @@ class _PremiumTrainerPageState extends State<PremiumTrainerPage> {
             ? Container()
             : Divider(
                 color: FitwithColors.getSecondary100(),
-                height: 8.0,
+                height: 20.0,
               ),
         InkWell(
           child: Container(
@@ -171,12 +171,12 @@ class _PremiumTrainerPageState extends State<PremiumTrainerPage> {
                           child: member.avatar != '' &&  member.avatar != null ? Image.network(
                             member.avatar,
                             fit: BoxFit.cover,
-                            width: 40.0,
-                            height: 40.0,
+                            width: 42.0,
+                            height: 42.0,
                           ) : Image.asset("assets/Profile.png",
                             fit: BoxFit.cover,
-                            width: 40.0,
-                            height: 40.0,) ,
+                            width: 42.0,
+                            height: 42.0,) ,
                         ),
                         SizedBox(
                           width: 15.0,
@@ -186,13 +186,13 @@ class _PremiumTrainerPageState extends State<PremiumTrainerPage> {
                       children: [
                         Text(
                           member.username,
-                          style: TextStyle(fontSize: 18.0),
+                          style: TextStyle(fontSize: 20.0),
                         ),
                         SizedBox(height: 5.0),
                         Text(
                           '(${member.gender == 'M' ? '남' : '여'}, ${member.age}세)',
                           style: TextStyle(
-                            fontSize: 14.0,
+                            fontSize: 16.0,
                             color: FitwithColors.getSecondary300(),
                           ),
                         ),
@@ -208,7 +208,7 @@ class _PremiumTrainerPageState extends State<PremiumTrainerPage> {
                       style: TextStyle(
                         color: FitwithColors.getSecondary600(),
                         fontWeight: FontWeight.bold,
-                        fontSize: 18.0,
+                        fontSize: 20.0,
                       ),
                     ),
                     SizedBox(height: 5.0),
@@ -228,7 +228,7 @@ class _PremiumTrainerPageState extends State<PremiumTrainerPage> {
                       ])})',
                       style: TextStyle(
                         color: FitwithColors.getSecondary200(),
-                        fontSize: 14,
+                        fontSize: 16,
                       ),
                     ),
                   ],

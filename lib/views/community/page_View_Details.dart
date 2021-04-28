@@ -28,10 +28,11 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
           context,
           _buildBody(),
             appBar: AppBar(
+              iconTheme: IconThemeData(color: FitwithColors.getSecondary300()),
               elevation: 0.0,
               centerTitle: true,
               backgroundColor: Colors.white,
-              title: Image.asset('assets/logo_blue.png'),
+              title: Image.asset('assets/logo_blue.png',height: 25,),
             )
         ),
         _loading ? buildLoading() : Container()
@@ -53,18 +54,23 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  IconButton(icon: Icon(Icons.arrow_back_ios_sharp), onPressed: (){
-                    print('11111111111111111111111111111111111111111111111111111111111111111111');
-                    print(widget.item.userId );
-                    print( Provider.of<User>(context,listen: false).userId );
-                    Navigator.pop(context);
-                  }),
-                  Text('뒤로'),
-                ],
-              ),
-              Text(widget.item.type),
+              // Row(
+              //   children: [
+              //     IconButton(icon: Icon(Icons.arrow_back_ios_sharp, size: 20,color: FitwithColors.getSecondary300(),), onPressed: (){
+              //       Navigator.pop(context);
+              //     }),
+              //     Text('뒤로', style: TextStyle(
+              //       fontSize: 16,
+              //       fontWeight: FontWeight.bold,
+              //       color: FitwithColors.getSecondary300()
+              //     ),),
+              //   ],
+              // ),
+              Text(widget.item.type, style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: FitwithColors.getPrimaryColor()
+              ),),
               Text(widget.item.title),
               Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
