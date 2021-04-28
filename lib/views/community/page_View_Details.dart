@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 
 class CommunityDetailPage extends StatefulWidget {
   final item;
-  CommunityDetailPage({ Key key, this.item }) : super(key: key);
+  CommunityDetailPage({Key key, this.item}) : super(key: key);
   @override
   _CommunityDetailPageState createState() => _CommunityDetailPageState();
 }
@@ -24,17 +24,17 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        buildScaffold(
-          context,
-          _buildBody(),
+        buildScaffold(context, _buildBody(),
             appBar: AppBar(
               iconTheme: IconThemeData(color: FitwithColors.getSecondary300()),
               elevation: 0.0,
               centerTitle: true,
               backgroundColor: Colors.white,
-              title: Image.asset('assets/logo_blue.png',height: 25,),
-            )
-        ),
+              title: Image.asset(
+                'assets/logo_blue.png',
+                height: 25,
+              ),
+            )),
         _loading ? buildLoading() : Container()
       ],
     );
@@ -66,47 +66,86 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
               //     ),),
               //   ],
               // ),
-              Text(widget.item.type, style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-                color: FitwithColors.getPrimaryColor()
-              ),),
-              Text(widget.item.title),
+              Text(
+                widget.item.type,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: FitwithColors.getPrimaryColor()),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                widget.item.title,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                    color: FitwithColors.getSecondary400()),
+              ),
+              SizedBox(
+                height: 5,
+              ),
               Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  widget.item.avatar != null && widget.item.avatar !='' ? Image.network(
-                      widget.item.avatar, height: 50,) : Image.asset('assets/basicProfile.png',height: 50,),
+                  widget.item.avatar != null && widget.item.avatar != ''
+                      ? Image.network(
+                          widget.item.avatar,
+                          height: 50,
+                        )
+                      : Image.asset(
+                          'assets/Profile.png',
+                          height: 40,
+                        ),
+                  SizedBox(height: 60, width: 8,),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(widget.item.username),
-                      Text(widget.item.createdAt.toString()),
+                      Text(
+                        widget.item.username,
+                        style: TextStyle(
+                            // fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: FitwithColors.getSecondary400()),
+                      ),
+                      Text(widget.item.createdAt.toString(),
+                        style: TextStyle(
+                        // fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          color: FitwithColors.getSecondary300()),),
                     ],
                   ),
-                  widget.item.userId == Provider.of<User>(context,listen: false).userId ? InkWell(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        deleteCommunity(widget.item.id);
-                      },
-                      child: Text('삭제'),
-                    ),
-                  ): Container(),
+                  widget.item.userId ==
+                          Provider.of<User>(context, listen: false).userId
+                      ? InkWell(
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                              deleteCommunity(widget.item.id);
+                            },
+                            child: Text('삭제'),
+                          ),
+                        )
+                      : Container(),
                 ],
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Container(
                 width: double.infinity,
-                child: Text(widget.item.contents),
-               padding : EdgeInsets.symmetric( vertical: 20 ),
+                child: Text(widget.item.contents, style: TextStyle(
+                  fontSize: 16
+                ),),
+                padding: EdgeInsets.symmetric(vertical: 20),
                 decoration: BoxDecoration(
                     border: Border(
-                      top: BorderSide( color: FitwithColors.getSecondary200()),
-                      bottom: BorderSide( color: FitwithColors.getSecondary200()),
-                    )
+                  top: BorderSide(color: FitwithColors.getSecondary200()),
+                  bottom: BorderSide(color: FitwithColors.getSecondary200()),
+                )
                     // border: Border.all(color: Colors.blueAccent)
-                ),
+                    ),
               ),
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -137,7 +176,6 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
               //     )
               //   ],
               // ),
-
             ],
           ),
         ),
@@ -145,6 +183,3 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
     );
   }
 }
-
-
-
