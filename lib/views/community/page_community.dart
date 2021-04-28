@@ -35,6 +35,7 @@ class _CommunityPageState extends State<CommunityPage> {
   void initState() {
     super.initState();
     _getBetaList();
+    print(_dropdownValue);
   }
 
   @override
