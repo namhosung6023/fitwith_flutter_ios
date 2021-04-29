@@ -233,7 +233,7 @@ class _TrainerSelectedMemberState extends State<TrainerSelectedMember>
                 '오늘의 한마디',
                 style: TextStyle(
                   color: Colors.black38,
-                  fontSize: 14.0,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -258,7 +258,7 @@ class _TrainerSelectedMemberState extends State<TrainerSelectedMember>
                           ? '내용을 입력하세요'
                           : value.trainerComment.comment,
                       style: TextStyle(
-                        fontSize: 13.0,
+                        fontSize: 15.0,
                         color: value.trainerComment.comment == ''
                             ? FitwithColors.getSecondary200()
                             : FitwithColors.getSecondary400(),
@@ -356,7 +356,7 @@ class _TrainerSelectedMemberState extends State<TrainerSelectedMember>
       controller: this._tabCtrl,
       labelColor: FitwithColors.getPrimaryColor(),
       unselectedLabelColor: FitwithColors.getSecondary200(),
-      labelStyle: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+      labelStyle: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
       tabs: [
         Tab(text: '체크리스트'),
         Tab(text: '관리 일지'),

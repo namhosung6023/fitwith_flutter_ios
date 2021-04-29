@@ -38,7 +38,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                 '운동',
                 style: TextStyle(
                   color: FitwithColors.getSecondary400(),
-                  fontSize: 16.0,
+                  fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),

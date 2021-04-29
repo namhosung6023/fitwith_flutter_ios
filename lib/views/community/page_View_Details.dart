@@ -73,148 +73,70 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
                     color: FitwithColors.getSecondary400()),
               ),
               SizedBox(
-                height: 5,
+                height: 10,
               ),
+
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  widget.item.avatar != null && widget.item.avatar != ''
-                      ? ClipOval(
-                        child: Image.network(
-                            widget.item.avatar,
-                            height: 50,
-                            width: 50,
-                    fit: BoxFit.cover,
-                          ),
-                      )
-                      : Image.asset(
-                          'assets/Profile.png',
-                          height: 40,
-                        ),
-                  // SizedBox(height: 60, width: 8,),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    // crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                          Column(
-                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            // crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                widget.item.username,
-                                style: TextStyle(
-                                    // fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                    color: FitwithColors.getSecondary400()),
-                              ),
-                              Text('${formatDate(widget.item.createdAt, [
-                                yyyy, '.', mm, '.', dd, ' '' ', HH, ':', nn
-                              ])}',
-                                style: TextStyle(
-                                  // fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                    color: FitwithColors.getSecondary250()),),
-                            ],
-                          ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        // mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          widget.item.userId ==
-                              Provider.of<User>(context, listen: false).userId
-                              ? InkWell(
-                            child: TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                                deleteCommunity(widget.item.id);
-                              },
-                              child: Text('삭제', style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                  color: FitwithColors.getBasicOrange()
-                              ),),
-                            ),
-                          )
-                              : Container(),
-                        ],
+                    children: [widget.item.avatar != null && widget.item.avatar != ''
+                        ? ClipOval(
+                      child: Image.network(
+                        widget.item.avatar,
+                        height: 50,
+                        width: 50,
+                        fit: BoxFit.cover,
                       ),
-                          // Text('${formatDate(widget.item.createdAt, [
-                          //   yyyy, '.', mm, '.', dd, ' '' ', HH, ':', nn
-                          // ])}',
-                          //   style: TextStyle(
-                          //     // fontWeight: FontWeight.bold,
-                          //       fontSize: 14,
-                          //       color: FitwithColors.getSecondary250()),),
-                          SizedBox(height: 3),
-                              // widget.item.userId ==
-                              //     Provider.of<User>(context, listen: false).userId
-                              //     ? InkWell(
-                              //   child: TextButton(
-                              //     onPressed: () {
-                              //       Navigator.of(context).pop();
-                              //       deleteCommunity(widget.item.id);
-                              //     },
-                              //     child: Text('삭제', style: TextStyle(
-                              //         fontWeight: FontWeight.bold,
-                              //         fontSize: 14,
-                              //         color: FitwithColors.getBasicOrange()
-                              //     ),),
-                              //   ),
-                              // )
-                              //     : Container(),
-
-
-                          // Row(
-                          //   // crossAxisAlignment: CrossAxisAlignment.s,
-                          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //   children: [
-                          //     // Text('${formatDate(widget.item.createdAt, [
-                          //     //   yyyy, '.', mm, '.', dd, ' '' ', HH, ':', nn
-                          //     // ])}',
-                          //     //   style: TextStyle(
-                          //     //   // fontWeight: FontWeight.bold,
-                          //     //     fontSize: 14,
-                          //     //     color: FitwithColors.getSecondary250()),),
-                          //     widget.item.userId ==
-                          //         Provider.of<User>(context, listen: false).userId
-                          //         ? InkWell(
-                          //       child: TextButton(
-                          //         onPressed: () {
-                          //           Navigator.of(context).pop();
-                          //           deleteCommunity(widget.item.id);
-                          //         },
-                          //         child: Text('삭제', style: TextStyle(
-                          //             fontWeight: FontWeight.bold,
-                          //             fontSize: 14,
-                          //             color: FitwithColors.getBasicOrange()
-                          //         ),),
-                          //       ),
-                          //     )
-                          //         : Container(),
-                          //   ],
-                          // )
-                    ],
+                    )
+                        : Image.asset(
+                      'assets/Profile.png',
+                      height: 40,
+                    ),
+                      SizedBox(width: 8,),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.item.username,
+                            style: TextStyle(
+                              // fontWeight: FontWeight.bold,
+                                fontSize: 17,
+                                color: FitwithColors.getSecondary400()),
+                          ),
+                          SizedBox(height: 2,),
+                          Text('${formatDate(widget.item.createdAt, [
+                            yyyy, '.', mm, '.', dd, ' '' ', HH, ':', nn
+                          ])}',
+                            style: TextStyle(
+                              // fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: FitwithColors.getSecondary250()),),
+                        ],
+                      ),],
                   ),
-                  // widget.item.userId ==
-                  //         Provider.of<User>(context, listen: false).userId
-                  //     ? InkWell(
-                  //         child: TextButton(
-                  //           onPressed: () {
-                  //             Navigator.of(context).pop();
-                  //             deleteCommunity(widget.item.id);
-                  //           },
-                  //           child: Text('삭제', style: TextStyle(
-                  //             fontWeight: FontWeight.bold,
-                  //             fontSize: 14,
-                  //             color: FitwithColors.getBasicOrange()
-                  //           ),),
-                  //         ),
-                  //       )
-                  //     : Container(),
+                  widget.item.userId ==
+                      Provider.of<User>(context, listen: false).userId
+                      ? Container(
+                    alignment: Alignment.bottomRight,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            deleteCommunity(widget.item.id);
+                          },
+                        child: Text('삭제', style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: FitwithColors.getBasicOrange()
+                        ),
+                    ),
+                  ),
+                      )
+                      : Container(),
                 ],
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               Container(
                 width: double.infinity,
@@ -222,7 +144,7 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
                   height: 1.2,
                   fontSize: 16
                 ),),
-                padding: EdgeInsets.symmetric(vertical: 20),
+                padding: EdgeInsets.symmetric(vertical: 15),
                 decoration: BoxDecoration(
                     border: Border(
                   top: BorderSide(color: FitwithColors.getSecondary200()),
