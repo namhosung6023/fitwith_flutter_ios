@@ -297,14 +297,14 @@ class _TrainingPageState extends State<TrainingPage> {
                           Text(
                             '신청 후 변경이 불가하오니',
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 13,
                               color: FitwithColors.getSecondary300(),
                             ),
                           ),
                           Text(
                             '다시 한번 확인해주세요',
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 13,
                               color: FitwithColors.getSecondary300(),
                             ),
                           ),

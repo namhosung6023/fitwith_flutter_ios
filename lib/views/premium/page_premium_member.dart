@@ -233,7 +233,7 @@ class _PremiumMemberPageState extends State<PremiumMemberPage>
                                   user.trainerName,
                                   style: TextStyle(
                                     color: FitwithColors.getSecondary400(),
-                                    fontSize: 14.0,
+                                    fontSize: 16.0,
                                   ),
                                 ),
                                 SizedBox(width: 3.0),
@@ -241,15 +241,15 @@ class _PremiumMemberPageState extends State<PremiumMemberPage>
                                   'Wither',
                                   style: TextStyle(
                                     color: Colors.orange,
-                                    fontSize: 12.0,
+                                    fontSize: 14.0,
                                   ),
                                 ),
                                 SizedBox(width: 8.0),
                                 Text(
                                   '${timeago.format(user.trainerComment.createdAt, locale: 'ko')}',
                                   style: TextStyle(
-                                    color: FitwithColors.getSecondary200(),
-                                    fontSize: 12.0,
+                                    color: FitwithColors.getSecondary250(),
+                                    fontSize: 14.0,
                                   ),
                                 ),
                               ],
@@ -294,7 +294,7 @@ class _PremiumMemberPageState extends State<PremiumMemberPage>
       controller: this._tabCtrl,
       labelColor: FitwithColors.getPrimaryColor(),
       unselectedLabelColor: FitwithColors.getSecondary200(),
-      labelStyle: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+      labelStyle: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
       tabs: [
         Tab(text: '체크리스트'),
         Tab(text: '관리 일지'),

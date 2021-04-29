@@ -26,7 +26,7 @@ Widget buildConfirmDialog(
             // alignment: Alignment.center,
             child: WidgetUtils.buildDefaultButton1(
               '확인',
-              () {
+                  () {
                 func();
                 Navigator.pop(context);
               },

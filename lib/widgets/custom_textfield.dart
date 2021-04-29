@@ -56,75 +56,79 @@ class _CustomTextFieldState extends State<CustomTextField> {
         print('food icon not found');
     }
 
-    return widget.length != null && widget.length > 0
-        ? Container(
-            padding: EdgeInsets.symmetric(horizontal: 40.0),
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 15.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: _textController,
-                        maxLines: null,
-                        keyboardType: TextInputType.text,
-                        focusNode: _focus,
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          color: FitwithColors.getSecondary400(),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        widget.length != null && widget.length > 0
+            ? Container(
+                padding: EdgeInsets.symmetric(horizontal: 40.0),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 5.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.only(right: 10.0, top: 8.0),
+                          child: Image.asset(
+                            _iconPath,
+                            width: 20.0,
+                            height: 20.0,
+                          ),
                         ),
-                        onEditingComplete: () =>
-                            FocusScope.of(context).unfocus(),
-                        decoration: InputDecoration(
-                          isDense: true,
-                          border: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          focusedErrorBorder: InputBorder.none,
-                          errorBorder: InputBorder.none,
-                          disabledBorder: InputBorder.none,
-                          contentPadding: EdgeInsets.symmetric(vertical: 12.0),
-                          prefixIcon: Container(
-                            padding: EdgeInsets.only(right: 10.0),
-                            child: Image.asset(
-                              _iconPath,
-                              width: 20.0,
-                              height: 20.0,
+                        Expanded(
+                          child: TextField(
+                            controller: _textController,
+                            maxLines: null,
+                            keyboardType: TextInputType.text,
+                            focusNode: _focus,
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: FitwithColors.getSecondary400(),
+                            ),
+                            onEditingComplete: () =>
+                                FocusScope.of(context).unfocus(),
+                            decoration: InputDecoration(
+                              isDense: true,
+                              border: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                              enabledBorder: InputBorder.none,
+                              focusedErrorBorder: InputBorder.none,
+                              errorBorder: InputBorder.none,
+                              disabledBorder: InputBorder.none,
+                              contentPadding: EdgeInsets.symmetric(vertical: 10.0),
                             ),
                           ),
-                          prefixIconConstraints:
-                              BoxConstraints(minWidth: 0.0, minHeight: 0.0),
                         ),
-                      ),
+                        widget.title != ''
+                            ? Container(
+                          padding: EdgeInsets.only( top: 8.0),
+                                child: InkWell(
+                                  onTap: () {
+                                    Provider.of<User>(context, listen: false)
+                                        .setFoodTitle('', widget.foodName);
+                                    Provider.of<User>(context, listen: false)
+                                        .postUploadFoodTitle(widget.foodName);
+                                    return _textController.clear;
+                                  },
+                                  child: Icon(
+                                    Icons.clear,
+                                    size: 20.0,
+                                    color: FitwithColors.getSecondary200(),
+                                  ),
+                                ),
+                              )
+                            : Container(),
+                      ],
                     ),
-                    widget.title != ''
-                        ? Container(
-                            padding: EdgeInsets.only(left: 10.0),
-                            child: InkWell(
-                              onTap: () {
-                                Provider.of<User>(context, listen: false)
-                                    .setFoodTitle('', widget.foodName);
-                                Provider.of<User>(context, listen: false)
-                                    .postUploadFoodTitle(widget.foodName);
-                                return _textController.clear;
-                              },
-                              child: Icon(
-                                Icons.clear,
-                                size: 16.0,
-                                color: FitwithColors.getSecondary200(),
-                              ),
-                            ),
-                          )
-                        : Container(),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-          )
-        : Container();
+              )
+            : Container(),
+      ],
+    );
   }
 }

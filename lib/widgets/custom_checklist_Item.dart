@@ -264,14 +264,14 @@ class _CustomChecklistItemState extends State<CustomChecklistItem> {
                           Text(
                             '지금 취소하시면',
                             style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 14,
                               color: FitwithColors.getSecondary300(),
                             ),
                           ),
                           Text(
                             '체크한 시간이 변경될 수 있습니다.',
                             style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 14,
                               color: FitwithColors.getSecondary300(),
                             ),
                           ),

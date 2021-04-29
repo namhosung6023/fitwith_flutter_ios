@@ -5,6 +5,7 @@ import 'package:fitwith/views/community/page_View_Details.dart';
 import 'package:fitwith/views/community/page_write.dart';
 import 'package:fitwith/widgets/custom_confirm_dialog.dart';
 import 'package:fitwith/widgets/custom_loading.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -49,33 +50,46 @@ class _CommunityPageState extends State<CommunityPage> {
             ),
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('게시판'),
-                    InkWell(
-                      onTap: () => CommonUtils.movePage(context, WritePage()),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.create,
-                            color: FitwithColors.getPrimaryColor(),
+                Container(
+                  padding: EdgeInsets.only(bottom: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('커뮤니티', style: TextStyle(
+                        fontSize: 16,
+                        color: FitwithColors.getSecondary300(),
+                        fontWeight: FontWeight.bold
+                      ),),
+                      Container(
+                        child: InkWell(
+                          onTap: () => CommonUtils.movePage(context, WritePage()),
+                          child: Row(
+                            children: [
+                              Image.asset('assets/communitypost.png',
+                                height: 17,
+                                // color: FitwithColors.getPrimaryColor(),
+                              ),
+                              SizedBox(width: 5.0),
+                              Text(
+                                '글 작성하기',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: FitwithColors.getPrimaryColor(),
+                                ),
+                              ),
+                            ],
                           ),
-                          SizedBox(width: 5.0),
-                          Text(
-                            '글 작성하기',
-                            style: TextStyle(
-                              color: FitwithColors.getPrimaryColor(),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(height: 10.0),
                 DropdownButtonFormField(
-                  isDense: true,
+                  // itemHeight: 100,
+                    // isExpanded: false,
+                  isDense: false,
                   decoration: InputDecoration(
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
@@ -130,63 +144,76 @@ class _CommunityPageState extends State<CommunityPage> {
     timeago.setLocaleMessages('ko', timeago.KoMessages());
     // print(item.userId);
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         InkWell(
           onTap: () =>
               CommonUtils.movePage(context, CommunityDetailPage(item: item)),
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  item.title,
-                  style: TextStyle(fontSize: 16.0),
-                ),
-                SizedBox(height: 10.0),
-                Text(
-                  item.contents,
-                  maxLines: 2,
-                  style: TextStyle(
-                    color: FitwithColors.getSecondary300(),
-                  ),
-                ),
-                SizedBox(height: 8.0),
-                Row(
+          child: Column(
+
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      item.type,
-                      style: TextStyle(
-                        color: FitwithColors.getPrimaryColor(),
-                      ),
+                      item.title,
+                      style: TextStyle(fontSize: 18.0,  color: FitwithColors.getSecondary500()),
                     ),
-                    Container(
-                      height: 20.0,
-                      child: VerticalDivider(
-                        color: FitwithColors.getSecondary300(),
-                        width: 25.0,
-                      ),
-                    ),
-                    Text(item.username),
-                    Container(
-                      height: 20.0,
-                      child: VerticalDivider(
-                        color: FitwithColors.getSecondary300(),
-                        width: 25.0,
-                      ),
-                    ),
+                    SizedBox(height: 6.0),
                     Text(
-                      '${timeago.format(item.createdAt, locale: 'ko')}',
+                      item.contents,
+                      maxLines: 2,
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: FitwithColors.getSecondary300(),
+                      ),
+                    ),
+                    SizedBox(height: 12.0),
+                    Row(
+                      children: [
+                       if(item.type != null) Text(
+                          item.type,
+                          style: TextStyle(
+                            color: FitwithColors.getPrimaryColor(),
+                          ),
+                        ),
+                        Container(
+                          height: 14.0,
+                          child: VerticalDivider(
+                            color: FitwithColors.getSecondary300(),
+                            width: 15.0,
+                          ),
+                        ),
+                        Text(item.username,
+                          style: TextStyle(
+                            color: FitwithColors.getSecondary250()
+                        ),),
+                        Container(
+                          height: 14.0,
+                          child: VerticalDivider(
+                            color: FitwithColors.getSecondary300(),
+                            width: 15.0,
+                          ),
+                        ),
+                        Text(
+                          '${timeago.format(item.createdAt, locale: 'ko')}',
+                          style: TextStyle(
+                            color: FitwithColors.getSecondary250()
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
-        SizedBox(height: 10.0),
+        // SizedBox(height: 10.0),
         Divider(
-          height: 20.0,
+          height: 34.0,
           color: FitwithColors.getSecondary200(),
         ),
       ],

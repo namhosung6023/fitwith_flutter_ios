@@ -1,3 +1,4 @@
+import 'package:date_format/date_format.dart';
 import 'package:fitwith/api/api_beta.dart';
 import 'package:fitwith/config/colors.dart';
 import 'package:fitwith/models/model_beta.dart';
@@ -49,32 +50,20 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
         child: Container(
           padding: EdgeInsets.symmetric(
             horizontal: 20.0,
-            vertical: 20.0,
+            vertical: 10.0,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Row(
-              //   children: [
-              //     IconButton(icon: Icon(Icons.arrow_back_ios_sharp, size: 20,color: FitwithColors.getSecondary300(),), onPressed: (){
-              //       Navigator.pop(context);
-              //     }),
-              //     Text('뒤로', style: TextStyle(
-              //       fontSize: 16,
-              //       fontWeight: FontWeight.bold,
-              //       color: FitwithColors.getSecondary300()
-              //     ),),
-              //   ],
-              // ),
               Text(
                 widget.item.type,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                    fontSize: 16,
                     color: FitwithColors.getPrimaryColor()),
               ),
               SizedBox(
-                height: 5,
+                height: 8,
               ),
               Text(
                 widget.item.title,
@@ -87,47 +76,141 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
                 height: 5,
               ),
               Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   widget.item.avatar != null && widget.item.avatar != ''
-                      ? Image.network(
-                          widget.item.avatar,
-                          height: 50,
-                        )
+                      ? ClipOval(
+                        child: Image.network(
+                            widget.item.avatar,
+                            height: 50,
+                            width: 50,
+                    fit: BoxFit.cover,
+                          ),
+                      )
                       : Image.asset(
                           'assets/Profile.png',
                           height: 40,
                         ),
-                  SizedBox(height: 60, width: 8,),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  // SizedBox(height: 60, width: 8,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        widget.item.username,
-                        style: TextStyle(
-                            // fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: FitwithColors.getSecondary400()),
+                          Column(
+                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            // crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                widget.item.username,
+                                style: TextStyle(
+                                    // fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: FitwithColors.getSecondary400()),
+                              ),
+                              Text('${formatDate(widget.item.createdAt, [
+                                yyyy, '.', mm, '.', dd, ' '' ', HH, ':', nn
+                              ])}',
+                                style: TextStyle(
+                                  // fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                    color: FitwithColors.getSecondary250()),),
+                            ],
+                          ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        // mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          widget.item.userId ==
+                              Provider.of<User>(context, listen: false).userId
+                              ? InkWell(
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                                deleteCommunity(widget.item.id);
+                              },
+                              child: Text('삭제', style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                  color: FitwithColors.getBasicOrange()
+                              ),),
+                            ),
+                          )
+                              : Container(),
+                        ],
                       ),
-                      Text(widget.item.createdAt.toString(),
-                        style: TextStyle(
-                        // fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                          color: FitwithColors.getSecondary300()),),
+                          // Text('${formatDate(widget.item.createdAt, [
+                          //   yyyy, '.', mm, '.', dd, ' '' ', HH, ':', nn
+                          // ])}',
+                          //   style: TextStyle(
+                          //     // fontWeight: FontWeight.bold,
+                          //       fontSize: 14,
+                          //       color: FitwithColors.getSecondary250()),),
+                          SizedBox(height: 3),
+                              // widget.item.userId ==
+                              //     Provider.of<User>(context, listen: false).userId
+                              //     ? InkWell(
+                              //   child: TextButton(
+                              //     onPressed: () {
+                              //       Navigator.of(context).pop();
+                              //       deleteCommunity(widget.item.id);
+                              //     },
+                              //     child: Text('삭제', style: TextStyle(
+                              //         fontWeight: FontWeight.bold,
+                              //         fontSize: 14,
+                              //         color: FitwithColors.getBasicOrange()
+                              //     ),),
+                              //   ),
+                              // )
+                              //     : Container(),
+
+
+                          // Row(
+                          //   // crossAxisAlignment: CrossAxisAlignment.s,
+                          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //   children: [
+                          //     // Text('${formatDate(widget.item.createdAt, [
+                          //     //   yyyy, '.', mm, '.', dd, ' '' ', HH, ':', nn
+                          //     // ])}',
+                          //     //   style: TextStyle(
+                          //     //   // fontWeight: FontWeight.bold,
+                          //     //     fontSize: 14,
+                          //     //     color: FitwithColors.getSecondary250()),),
+                          //     widget.item.userId ==
+                          //         Provider.of<User>(context, listen: false).userId
+                          //         ? InkWell(
+                          //       child: TextButton(
+                          //         onPressed: () {
+                          //           Navigator.of(context).pop();
+                          //           deleteCommunity(widget.item.id);
+                          //         },
+                          //         child: Text('삭제', style: TextStyle(
+                          //             fontWeight: FontWeight.bold,
+                          //             fontSize: 14,
+                          //             color: FitwithColors.getBasicOrange()
+                          //         ),),
+                          //       ),
+                          //     )
+                          //         : Container(),
+                          //   ],
+                          // )
                     ],
                   ),
-                  widget.item.userId ==
-                          Provider.of<User>(context, listen: false).userId
-                      ? InkWell(
-                          child: TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                              deleteCommunity(widget.item.id);
-                            },
-                            child: Text('삭제'),
-                          ),
-                        )
-                      : Container(),
+                  // widget.item.userId ==
+                  //         Provider.of<User>(context, listen: false).userId
+                  //     ? InkWell(
+                  //         child: TextButton(
+                  //           onPressed: () {
+                  //             Navigator.of(context).pop();
+                  //             deleteCommunity(widget.item.id);
+                  //           },
+                  //           child: Text('삭제', style: TextStyle(
+                  //             fontWeight: FontWeight.bold,
+                  //             fontSize: 14,
+                  //             color: FitwithColors.getBasicOrange()
+                  //           ),),
+                  //         ),
+                  //       )
+                  //     : Container(),
                 ],
               ),
               SizedBox(
@@ -135,7 +218,8 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
               ),
               Container(
                 width: double.infinity,
-                child: Text(widget.item.contents, style: TextStyle(
+                child: Text(widget.item.contents,  textAlign: TextAlign.justify, style: TextStyle(
+                  height: 1.2,
                   fontSize: 16
                 ),),
                 padding: EdgeInsets.symmetric(vertical: 20),

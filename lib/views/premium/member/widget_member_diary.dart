@@ -83,7 +83,7 @@ class _MemberDiaryState extends State<MemberDiary> {
             imageName: 'morningBody',
             length: 1,
           ),
-          _buildComment('일어나시고 배변 후 몸 사진을 찍어 올려주세요'),
+          _buildComment('아침 배변 후 몸 사진을 찍어주세요'),
           SizedBox(height: 10.0),
           _buildWeight(
             'morningWeight',
@@ -127,7 +127,7 @@ class _MemberDiaryState extends State<MemberDiary> {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 30.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 _buildUploadButton(
                   '아침',
@@ -196,15 +196,19 @@ class _MemberDiaryState extends State<MemberDiary> {
                 length: user.bodyLog.nightFood.length,
               ),
               _buildImages(user.bodyLog.nightFood, 'nightFood'),
-              CustomTextField(
-                title: user.bodyLog.nightFoodTitle,
-                foodName: 'nightFoodTitle',
-                length: user.bodyLog.nightFood.length,
+              Container(
+                child: CustomTextField(
+                  title: user.bodyLog.nightFoodTitle,
+                  foodName: 'nightFoodTitle',
+                  length: user.bodyLog.nightFood.length,
+                ),
               ),
             ],
           ),
           SizedBox(height: 30.0),
           Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildSubtitle(
                 '간식',

@@ -109,6 +109,21 @@ class WidgetUtils {
     );
   }
 
+  static Widget batabuildDefaultButton(String text, Function onPressed) {
+    return FlatButton(
+      height: 40,
+      minWidth: 120,
+      onPressed: onPressed,
+      // padding: const EdgeInsets.only(top: 8.0, bottom: 4.0),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+      child: Text(
+        text,
+        style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold),
+      ),
+      color: FitwithColors.getPrimaryColor(),
+    );
+  }
+
   /// Build custom style button
   static Widget buildCustomButton(
       Widget child, Function onPressed, Color color, Color textColor,

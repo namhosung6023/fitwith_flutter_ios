@@ -17,6 +17,10 @@ class FitwithColors {
     return Color(int.parse('0xFFD4D5D8'));
   }
 
+  static Color getSecondary250() {
+    return Color(int.parse('0xFFA3A3A3'));
+  }
+
   static Color getSecondary300() {
     return Color(int.parse('0xFF707070'));
   }
