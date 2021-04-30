@@ -53,7 +53,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
       centerTitle: true,
       actions: [
         IconButton(
-            icon: Icon(Icons.check),
+            icon: Icon(Icons.login_rounded),
             onPressed: () async {
               final prefs = await SharedPreferences.getInstance();
               prefs.remove('token');

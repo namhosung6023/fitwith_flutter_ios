@@ -276,7 +276,7 @@ class _TrainerSelectedMemberState extends State<TrainerSelectedMember>
 
   void _showModalBottomSheet() {
     showModalBottomSheet(
-      elevation: 14.0,
+      elevation: 1.0,
       backgroundColor: Colors.white,
       context: context,
       builder: (context) {
@@ -284,17 +284,19 @@ class _TrainerSelectedMemberState extends State<TrainerSelectedMember>
           children: [
             Expanded(
               child: Container(
+                height: 70,
+                color: Colors.white,
                 padding: EdgeInsets.symmetric(
                   vertical: 12.0,
                   horizontal: 15.0,
                 ),
                 child: TextField(
                   style: TextStyle(
-                    fontSize: 12.0,
+                    fontSize: 18.0,
                     color: FitwithColors.getSecondary400(),
                   ),
                   keyboardType: TextInputType.multiline,
-                  maxLines: 4,
+                  maxLines: null,
                   controller: _commentController,
                   // focusNode: _commentFocusNode,
                   autofocus: true,
@@ -323,6 +325,7 @@ class _TrainerSelectedMemberState extends State<TrainerSelectedMember>
                     child: Text(
                       '지우기',
                       style: TextStyle(
+                        fontSize: 16,
                         color: FitwithColors.getSecondary300(),
                       ),
                     ),
@@ -330,7 +333,9 @@ class _TrainerSelectedMemberState extends State<TrainerSelectedMember>
                 ),
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: Text('저장'),
+                  child: Text('저장', style: TextStyle(
+                    fontSize: 16,
+                  ),),
                 ),
               ],
             ),
