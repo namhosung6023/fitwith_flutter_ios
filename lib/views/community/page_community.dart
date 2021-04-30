@@ -56,7 +56,7 @@ class _CommunityPageState extends State<CommunityPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('커뮤니티', style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         color: FitwithColors.getSecondary300(),
                         fontWeight: FontWeight.bold
                       ),),
@@ -164,7 +164,7 @@ class _CommunityPageState extends State<CommunityPage> {
                     SizedBox(height: 6.0),
                     Text(
                       item.contents,
-                      maxLines: 2,
+                      maxLines: 1,
                       style: TextStyle(
                         fontSize: 15,
                         color: FitwithColors.getSecondary300(),

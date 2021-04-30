@@ -143,7 +143,7 @@ class _PremiumMemberPageState extends State<PremiumMemberPage>
           children: [
             Icon(
               Icons.calendar_today_rounded,
-              size: 16.0,
+              size: 17.0,
               color: FitwithColors.getSecondary300(),
             ),
             SizedBox(width: 6.0),
@@ -152,7 +152,7 @@ class _PremiumMemberPageState extends State<PremiumMemberPage>
                 builder: (context, user, child) {
                   return Text(
                     '${DateFormat('yyyy.MM.dd').format(user.selectedDay)}',
-                    style: TextStyle(color: FitwithColors.getSecondary300()),
+                    style: TextStyle(color: FitwithColors.getSecondary300(), fontSize: 16),
                   );
                 },
               ),
@@ -175,8 +175,8 @@ class _PremiumMemberPageState extends State<PremiumMemberPage>
       splashColor: Colors.transparent,
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 8.0),
-        height: 23.0,
-        width: 56.0,
+        height: 25.0,
+        width: 70.0,
         decoration: BoxDecoration(
           border: Border.all(
             color: FitwithColors.getSecondary300(),
@@ -186,12 +186,12 @@ class _PremiumMemberPageState extends State<PremiumMemberPage>
         ),
         child: Center(
             child: Text(
-          'TODAY',
-          style: TextStyle(
-            fontSize: 11.0,
-            color: FitwithColors.getSecondary300(),
-          ),
-        )),
+              'TODAY',
+              style: TextStyle(
+                fontSize: 13.0,
+                color: FitwithColors.getSecondary300(),
+              ),
+            )),
       ),
     );
   }
@@ -211,7 +211,7 @@ class _PremiumMemberPageState extends State<PremiumMemberPage>
                     child: ListTileTheme(
                       dense: true,
                       child: ExpansionTile(
-                        tilePadding: EdgeInsets.symmetric(horizontal: 10.0),
+                        tilePadding: EdgeInsets.symmetric(horizontal: 15.0),
                         title: Row(
                           children: [
                             ClipOval(
@@ -260,17 +260,17 @@ class _PremiumMemberPageState extends State<PremiumMemberPage>
                           Container(
                             alignment: Alignment.topLeft,
                             padding: EdgeInsets.only(
-                                left: 12.0,
-                                right: 20.0,
+                                left: 15.0,
+                                right: 15.0,
                                 bottom: 14.0,
-                                top: 4.0),
+                                top: 2.0),
                             child: Text(
                               user.trainerComment.comment,
                               textAlign: TextAlign.justify,
                               style: TextStyle(
                                 height: 1.3,
                                 color: FitwithColors.getSecondary300(),
-                                fontSize: 14.0,
+                                fontSize: 15.0,
                               ),
                             ),
                           ),
@@ -294,7 +294,7 @@ class _PremiumMemberPageState extends State<PremiumMemberPage>
       controller: this._tabCtrl,
       labelColor: FitwithColors.getPrimaryColor(),
       unselectedLabelColor: FitwithColors.getSecondary200(),
-      labelStyle: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+      labelStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
       tabs: [
         Tab(text: '체크리스트'),
         Tab(text: '관리 일지'),
@@ -302,7 +302,7 @@ class _PremiumMemberPageState extends State<PremiumMemberPage>
     );
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5),
       child: Stack(
         children: [
           Positioned(left: 0.0, right: 0.0, bottom: 0.0, child: border),

@@ -86,7 +86,7 @@ class _TrainingPageState extends State<TrainingPage> {
                     '트레이너',
                     style: TextStyle(
                       color: FitwithColors.getSecondary400(),
-                      fontSize: 18.0,
+                      fontSize: 20.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -99,7 +99,7 @@ class _TrainingPageState extends State<TrainingPage> {
                             Text(
                               '내 트레이너',
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 18,
                                 color: FitwithColors.getSecondary400(),
                               ),
                             ),
@@ -116,14 +116,14 @@ class _TrainingPageState extends State<TrainingPage> {
                         '추천 트레이너',
                         style: TextStyle(
                           color: FitwithColors.getSecondary400(),
-                          fontSize: 16,
+                          fontSize: 18,
                         ),
                       ),
                       SizedBox(width: 4.0),
                       Text(
                         '(${_trainers.length}명)',
                         style: TextStyle(
-                          fontSize: 14.0,
+                          fontSize: 16.0,
                           color: FitwithColors.getSecondary300(),
                         ),
                       ),
@@ -155,7 +155,7 @@ class _TrainingPageState extends State<TrainingPage> {
       child: Card(
         child: InkWell(
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: 18.0, horizontal: 20.0),
+            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -180,7 +180,7 @@ class _TrainingPageState extends State<TrainingPage> {
                             Text(
                               value.username,
                               style: TextStyle(
-                                fontSize: 16.0,
+                                fontSize: 18.0,
                                 color: FitwithColors.getSecondary400(),
                               ),
                             ),
@@ -188,7 +188,7 @@ class _TrainingPageState extends State<TrainingPage> {
                             Text(
                               'Wither',
                               style: TextStyle(
-                                fontSize: 13.0,
+                                fontSize: 15.0,
                                 color: FitwithColors.getBasicOrange(),
                               ),
                             )
@@ -212,7 +212,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                 ])}",
                                 style: TextStyle(
                                   color: FitwithColors.getSecondary200(),
-                                  fontSize: 13.0,
+                                  fontSize: 15.0,
                                 ),
                               )
                             : Row(
@@ -221,7 +221,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                     return Text(
                                       '#$value ',
                                       style: TextStyle(
-                                        fontSize: 14.0,
+                                        fontSize: 15.0,
                                         color: FitwithColors.getSecondary200(),
                                       ),
                                     );

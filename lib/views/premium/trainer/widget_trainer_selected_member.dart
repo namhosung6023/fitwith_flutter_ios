@@ -157,7 +157,7 @@ class _TrainerSelectedMemberState extends State<TrainerSelectedMember>
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 8.0),
         height: 25.0,
-        width: 60.0,
+        width: 70.0,
         decoration: BoxDecoration(
           border: Border.all(
             color: FitwithColors.getSecondary300(),

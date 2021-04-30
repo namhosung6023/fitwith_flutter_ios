@@ -46,7 +46,7 @@ class _MemberChecklistState extends State<MemberChecklist> {
                               Text(
                                 '운동',
                                 style: TextStyle(
-                                  fontSize: 16.0,
+                                  fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                   color: FitwithColors.getSecondary400(),
                                 ),
@@ -74,7 +74,7 @@ class _MemberChecklistState extends State<MemberChecklist> {
                               Text(
                                 '식단',
                                 style: TextStyle(
-                                  fontSize: 16.0,
+                                  fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                   color: FitwithColors.getSecondary400(),
                                 ),

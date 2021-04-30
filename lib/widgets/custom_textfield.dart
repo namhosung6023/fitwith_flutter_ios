@@ -86,7 +86,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                             keyboardType: TextInputType.text,
                             focusNode: _focus,
                             style: TextStyle(
-                              fontSize: 14.0,
+                              fontSize: 15.0,
                               color: FitwithColors.getSecondary400(),
                             ),
                             onEditingComplete: () =>

@@ -191,7 +191,7 @@ class _CustomChecklistItemState extends State<CustomChecklistItem> {
                                   widget.item.name,
                                   style: TextStyle(
                                     color: _color,
-                                    fontSize: 16.0,
+                                    fontSize: 18.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -199,7 +199,7 @@ class _CustomChecklistItemState extends State<CustomChecklistItem> {
                               Container(
                                 child: Text(
                                   widget.item.contents,
-                                  style: TextStyle(color: _color, height: 1.3),
+                                  style: TextStyle(color: _color, height: 1.3, fontSize: 16),
                                 ),
                               ),
                             ],
@@ -231,7 +231,7 @@ class _CustomChecklistItemState extends State<CustomChecklistItem> {
                                     ? '${DateFormat("Hm").format(widget.item.checkDate)}'
                                     : '',
                                 style: TextStyle(
-                                    fontSize: 12.0,
+                                    fontSize: 13.0,
                                     color: FitwithColors.getSecondary200()),
                               ),
                         ],

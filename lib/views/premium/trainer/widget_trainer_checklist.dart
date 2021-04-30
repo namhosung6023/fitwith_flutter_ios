@@ -21,7 +21,6 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
   @override
   Widget build(BuildContext context) {
     print('----------- premium_trainer_checklist widget build -----------');
-
     _deviceSize = MediaQuery.of(context).size;
     ScrollController _scrollController =
         ScrollController(initialScrollOffset: 0.0);
@@ -43,12 +42,12 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                 ),
               ),
             ),
-            SizedBox(height: 10.0),
+            // SizedBox(height: 5.0),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               // ReorderableListView 높이 + Divider 높이
               height: value.workoutList.length * _itemHeight +
-                  value.workoutList.length * 2.0,
+                  value.workoutList.length * 20.0,
               child: NotificationListener<OverscrollNotification>(
                 onNotification: (OverscrollNotification value) {
                   if (value.overscroll < 0 &&
@@ -83,10 +82,12 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                 ),
               ),
             ),
+            SizedBox(height: 10,),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 30.0),
+              padding: EdgeInsets.symmetric(horizontal: 30.0, ),
               child: TextButton(
                 style: TextButton.styleFrom(
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                   // minimumSize: Size(350.0, 28.0),
                   backgroundColor: FitwithColors.getSecondary50(),
                   shape: RoundedRectangleBorder(
@@ -100,7 +101,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                   '+ 추가 ',
                   style: TextStyle(
                     // fontWeight: FontWeight.bold,
-                    fontSize: 14.0,
+                    fontSize: 16.0,
                     color: FitwithColors.getPrimaryColor(),
                   ),
                 ),
@@ -110,14 +111,14 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                 ),
               ),
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 30.0),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 5.0),
               child: Text(
                 '식단',
                 style: TextStyle(
                   color: FitwithColors.getSecondary400(),
-                  fontSize: 16.0,
+                  fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -216,7 +217,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
         },
         child: Text(
           title,
-          style: TextStyle(color: _color, fontSize: 13),
+          style: TextStyle(color: _color, fontSize: 14),
         ),
         style: OutlinedButton.styleFrom(
           shape: RoundedRectangleBorder(
@@ -331,7 +332,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                             dietList.name,
                             maxLines: 1,
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 18,
                               color: _color,
                               fontWeight: FontWeight.bold,
                             ),
@@ -351,7 +352,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                               ? '${timeago.format(dietList.checkDate, locale: 'ko')}'
                               : '',
                           style: TextStyle(
-                            fontSize: 11.0,
+                            fontSize: 13.0,
                             color: FitwithColors.getPrimaryColor(),
                           ),
                         ),
@@ -364,8 +365,9 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                         dietList.contents,
                         style: TextStyle(
                           color: _color,
-                          fontSize: 13.0,
+                          fontSize: 16.0,
                         ),
+                        textAlign: TextAlign.justify,
                       ),
                     ),
                   ],
@@ -399,7 +401,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
         Divider(
           indent: 10.0,
           endIndent: 5.0,
-          height: 1.0,
+          height: 16.0,
           color:
               index == 0 ? Colors.transparent : FitwithColors.getSecondary200(),
         ),
@@ -421,7 +423,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                         item.name,
                         maxLines: 1,
                         style: TextStyle(
-                          fontSize: 16.0,
+                          fontSize: 18.0,
                           color: _color,
                           fontWeight: FontWeight.bold,
                         ),
@@ -431,7 +433,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                         ? Row(
                             children: [
                               Container(
-                                padding: EdgeInsets.all(4.0),
+                                padding: EdgeInsets.fromLTRB( 8, 4, 4, 4),
                                 child: Image.asset('assets/checkIcon.png'),
                               ),
                               SizedBox(width: 1.0),
@@ -440,7 +442,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                                     ? '${timeago.format(item.checkDate, locale: 'ko')}'
                                     : '',
                                 style: TextStyle(
-                                  fontSize: 11.0,
+                                  fontSize: 13.0,
                                   color: FitwithColors.getPrimaryColor(),
                                 ),
                               ),
@@ -459,7 +461,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            fontSize: 12.0,
+                            fontSize: 16.0,
                             color: _color,
                           ),
                         ),
@@ -471,11 +473,8 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                         // alignment: Alignment.bottomLeft,
                         child: ReorderableDragStartListener(
                           index: index,
-                          child: Image.asset(
-                            "assets/change2.png",
-                            color: FitwithColors.getSecondary200(),
-                            width: 15.0,
-                          ),
+                          child: Icon(Icons.drag_handle_rounded, color: FitwithColors.getSecondary200(),
+                          size: 25,)
                         ),
                       ),
                     ],
@@ -490,7 +489,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
   }
 
   Widget _buildDialog({CheckList item, int index}) {
-    final int maxLength = 20;
+    // final int maxLength = 20;
     var _titleController = TextEditingController();
     var _contentController = TextEditingController();
     bool _editable = true;
@@ -523,7 +522,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
               children: [
                 TextFormField(
                   enabled: _editable,
-                  maxLength: maxLength,
+                  // maxLength: maxLength,
                   maxLines: _editable ? 1 : null,
                   validator: (_titleController) {
                     if (_titleController.isEmpty) {
@@ -532,13 +531,13 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                     return null;
                   },
                   controller: _titleController,
-                  style: TextStyle(fontSize: 16.0),
+                  style: TextStyle(fontSize: 18.0),
                   decoration: InputDecoration(
-                    counterText: "",
+                    // counterText: "",
                     focusedErrorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(6.0),
                         borderSide: BorderSide(
-                            color: FitwithColors.getBasicOrange(), width: 2)),
+                            color: FitwithColors.getBasicOrange(), width: 1.0)),
                     // disabledBorder: InputBorder.none,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(6.0),
@@ -564,7 +563,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                       height: 1.0,
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                      borderSide: BorderSide(color: FitwithColors.getSecondary200(), width: 1.0),
                       borderRadius: BorderRadius.circular(6.0),
                     ),
                     hintText: '제목을 입력하세요 (필수)',
@@ -578,7 +577,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                     ? TextField(
                         maxLines: 5,
                         controller: _contentController,
-                        style: TextStyle(fontSize: 16.0),
+                        style: TextStyle(fontSize: 18.0),
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(6.0),
@@ -586,7 +585,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                                   color: FitwithColors.getPrimaryColor())),
                           enabledBorder: OutlineInputBorder(
                             borderSide:
-                                BorderSide(color: Colors.grey, width: 1.0),
+                                BorderSide(color: FitwithColors.getSecondary200(), width: 1.0),
                             borderRadius: BorderRadius.circular(6.0),
                           ),
                           hintText: '내용을 입력하세요',
@@ -601,7 +600,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                         width: double.infinity,
                         padding: EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey, width: 0.5),
+                          border: Border.all(color: FitwithColors.getSecondary200(), width: 0.5),
                           borderRadius: BorderRadius.circular(6.0),
                         ),
                         child: SingleChildScrollView(
@@ -625,8 +624,8 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                               child: Text(
                                 '취소',
                                 style: TextStyle(
-                                  fontSize: 16.0,
-                                  color: FitwithColors.getSecondary200(),
+                                  fontSize: 18.0,
+                                  color: FitwithColors.getSecondary250(),
                                 ),
                               ),
                             ),
@@ -695,13 +694,13 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                                   child: Text(
                                     '삭제',
                                     style: TextStyle(
-                                      fontSize: 16.0,
+                                      fontSize: 18.0,
                                       color: FitwithColors.getBasicOrange(),
                                     ),
                                   ),
                                 ),
                               ),
-                              SizedBox(width: 5.0),
+                              SizedBox(width: 10.0),
                               InkWell(
                                 onTap: () {
                                   if (_formKey.currentState.validate()) {
@@ -756,7 +755,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                                   child: Text(
                                     '완료',
                                     style: TextStyle(
-                                      fontSize: 16.0,
+                                      fontSize: 18.0,
                                       color: FitwithColors.getPrimaryColor(),
                                     ),
                                   ),
@@ -781,7 +780,7 @@ class _TrainerChecklistState extends State<TrainerChecklist> {
                               child: Text(
                                 '확인',
                                 style: TextStyle(
-                                  fontSize: 16.0,
+                                  fontSize: 18.0,
                                   color: FitwithColors.getPrimaryColor(),
                                 ),
                               ),

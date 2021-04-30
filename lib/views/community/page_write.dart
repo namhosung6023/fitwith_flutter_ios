@@ -135,7 +135,7 @@ class _WritePageState extends State<WritePage> {
                     // borderRadius: BorderRadius.circular(6.0),
                   ),
                   hintText: '제목을 입력하세요 (필수)',
-                  hintStyle: TextStyle(fontSize: 14, color: FitwithColors.getSecondary200())
+                  hintStyle: TextStyle(fontSize: 15, color: FitwithColors.getSecondary200())
                 ),
               ),
               SizedBox(height: 10),
@@ -152,7 +152,7 @@ class _WritePageState extends State<WritePage> {
                     // borderRadius: BorderRadius.circular(6.0),
                   ),
                   hintText: '내용을 입력하세요',
-                    hintStyle: TextStyle(fontSize: 14, color: FitwithColors.getSecondary200()),
+                    hintStyle: TextStyle(fontSize: 15, color: FitwithColors.getSecondary200()),
                   contentPadding: EdgeInsets.all(10.0),
                   border: OutlineInputBorder(
                     // borderRadius: BorderRadius.circular(6.0),
@@ -162,7 +162,7 @@ class _WritePageState extends State<WritePage> {
               SizedBox(height: 5,),
               Text('* 해당 게시물은 작성완료 후에는 수정이 불가하오니 내용을 다시 한 번 확인해 주시기 바랍니다.',
               style: TextStyle(
-                fontSize: 13,
+                fontSize: 14,
                 color: FitwithColors.getBasicOrange()
               ),),
               SizedBox(height: 10,),

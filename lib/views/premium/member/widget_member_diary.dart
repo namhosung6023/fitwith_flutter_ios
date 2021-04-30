@@ -119,7 +119,7 @@ class _MemberDiaryState extends State<MemberDiary> {
               '사진 업로드',
               style: TextStyle(
                 color: FitwithColors.getSecondary300(),
-                fontSize: 14.0,
+                fontSize: 16.0,
               ),
             ),
           ),
@@ -127,7 +127,7 @@ class _MemberDiaryState extends State<MemberDiary> {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 30.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _buildUploadButton(
                   '아침',
@@ -246,7 +246,7 @@ class _MemberDiaryState extends State<MemberDiary> {
                 child: Text(
                   title,
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: 18.0,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
@@ -274,7 +274,7 @@ class _MemberDiaryState extends State<MemberDiary> {
                 Text(
                   value,
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: 18.0,
                     fontWeight: FontWeight.bold,
                     color: FitwithColors.getSecondary300(),
                   ),
@@ -287,7 +287,7 @@ class _MemberDiaryState extends State<MemberDiary> {
                           child: Text(
                             '사진 업로드',
                             style: TextStyle(
-                              fontSize: 11,
+                              fontSize: 14,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
@@ -314,7 +314,7 @@ class _MemberDiaryState extends State<MemberDiary> {
       child: Text(
         comment,
         style: TextStyle(
-          fontSize: 12.0,
+          fontSize: 14.0,
           color: FitwithColors.getBasicOrange(),
         ),
       ),
@@ -334,7 +334,7 @@ class _MemberDiaryState extends State<MemberDiary> {
           Text(
             '몸무게',
             style: TextStyle(
-              fontSize: 14.0,
+              fontSize: 18.0,
               color: FitwithColors.getSecondary300(),
             ),
           ),
@@ -363,20 +363,20 @@ class _MemberDiaryState extends State<MemberDiary> {
                   style: TextStyle(
                     fontWeight: FontWeight.normal,
                     color: FitwithColors.getSecondary400(),
-                    fontSize: 14.0,
+                    fontSize: 16.0,
                   ),
                 ),
                 suffixIconConstraints:
                     BoxConstraints(minWidth: 0.0, minHeight: 0.0),
                 hintText: '0.0',
                 hintStyle: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: 18.0,
                   color: FitwithColors.getSecondary200(),
                 ),
               ),
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 16.0,
+                fontSize: 18.0,
                 color: FitwithColors.getSecondary400(),
                 fontWeight: FontWeight.bold,
               ),

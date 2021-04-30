@@ -123,7 +123,7 @@ class _TrainerDiaryState extends State<TrainerDiary> {
                 child: Text(
                   title,
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: 18.0,
                     // color: FitwithColors.getPrimaryColor(),
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -146,7 +146,7 @@ class _TrainerDiaryState extends State<TrainerDiary> {
           Text(
             value,
             style: TextStyle(
-              fontSize: 16.0,
+              fontSize: 18.0,
               fontWeight: FontWeight.bold,
               color: FitwithColors.getSecondary300(),
             ),
@@ -225,7 +225,8 @@ class _TrainerDiaryState extends State<TrainerDiary> {
                   child: Text(
                     title,
                     maxLines: null,
-                    style: TextStyle(fontSize: 14.0, color: Colors.black54),
+                    style: TextStyle(fontSize: 16.0, color: Colors.black54),
+                    textAlign: TextAlign.justify,
                   ),
                 ),
               ),
@@ -302,8 +303,8 @@ class _TrainerDiaryState extends State<TrainerDiary> {
           Text(
             '몸무게 기록',
             style: TextStyle(
-              color: FitwithColors.getSecondary200(),
-              fontSize: 16.0,
+              color: FitwithColors.getSecondary250(),
+              fontSize: 18.0,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -313,7 +314,7 @@ class _TrainerDiaryState extends State<TrainerDiary> {
               '$value kg',
               style: TextStyle(
                 color: FitwithColors.getSecondary400(),
-                fontSize: 16.0,
+                fontSize: 18.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
