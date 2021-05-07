@@ -36,9 +36,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> _login() async {
     if (_formKey.currentState.validate()) {
-      setState(() {
-        _loading = true;
-      });
+      setState(() => _loading = true);
       _user['password'] = sha512.convert(utf8.encode(_password)).toString();
       Map<String, dynamic> res = await postLogin(_user);
 
@@ -49,7 +47,6 @@ class _LoginPageState extends State<LoginPage> {
       } else {
         buildSnackBar(context, res['message']);
       }
-
       setState(() => _loading = false);
     } else {
       setState(() => _autoValidate = true);
@@ -83,7 +80,10 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Container(
                 width: 250.0,
-                child: Image.asset('assets/logo_blue.png', height: 40,),
+                child: Image.asset(
+                  'assets/logo_blue.png',
+                  height: 40,
+                ),
               ),
               SizedBox(height: 50.0),
               Container(
@@ -106,7 +106,6 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   children: [
                     CustomOutlinedTextField(
-
                       labelText: '이메일',
                       validator: (String value) {
                         if (value.isEmpty) {
@@ -168,9 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
-                      onTap: () async {
-                        await _login();
-                      },
+                      onTap: () async => await _login(),
                     ),
                   ],
                 ),
