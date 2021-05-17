@@ -3,31 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rive/rive.dart';
 
-class CustomCheckboxTile extends StatefulWidget {
+class CustomCheckboxInput extends StatefulWidget {
   final String title;
   final bool value;
   final Function onChanged;
-  final num fontSize;
-  final num paddingVertical;
-  final num paddingCenter;
-  final bool isBig;
 
-  CustomCheckboxTile({
-    Key key,
-    this.title,
-    this.value,
-    this.onChanged,
-    this.fontSize,
-    this.paddingVertical,
-    this.paddingCenter,
-    this.isBig = false,
-  }) : super(key: key);
+  CustomCheckboxInput({Key key, this.title, this.value, this.onChanged})
+      : super(key: key);
 
   @override
-  _CustomCheckboxTileState createState() => _CustomCheckboxTileState();
+  _CustomCheckboxInputState createState() => _CustomCheckboxInputState();
 }
 
-class _CustomCheckboxTileState extends State<CustomCheckboxTile> {
+class _CustomCheckboxInputState extends State<CustomCheckboxInput> {
   final riveFileName = 'assets/flares/checkbox-linebold.riv';
   Artboard _artBoard;
   RiveAnimationController _controller;
@@ -64,34 +52,40 @@ class _CustomCheckboxTileState extends State<CustomCheckboxTile> {
 
     return InkWell(
       child: Container(
-        padding: EdgeInsets.symmetric(
-          vertical:
-              widget.paddingVertical == null ? 5.0 : widget.paddingVertical,
-        ),
+        padding: EdgeInsets.symmetric(vertical: 10.0),
         child: Row(
           children: [
             _artBoard != null
                 ? SizedBox(
-                    height: widget.isBig ? 25.0 : 20.0,
-                    width: widget.isBig ? 25.0 : 20.0,
+                    height: 25.0,
+                    width: 25.0,
                     child: Rive(
                       artboard: _artBoard,
                       fit: BoxFit.cover,
                     ),
                   )
                 : SizedBox(
-                    height: widget.isBig ? 25.0 : 20.0,
-                    width: widget.isBig ? 25.0 : 20.0,
+                    height: 25.0,
+                    width: 25.0,
                     child: _checkbox,
                   ),
-            SizedBox(
-                width:
-                    widget.paddingCenter == null ? 10.0 : widget.paddingCenter),
-            Text(
-              widget.title,
-              style: TextStyle(
-                color: FitwithColors.getSecondary300(),
-                fontSize: widget.fontSize == null ? 14.0 : widget.fontSize,
+            SizedBox(width: 15.0),
+            Expanded(
+              child: TextField(
+                style: TextStyle(
+                  color: FitwithColors.getSecondary300(),
+                  fontSize: 18.0,
+                ),
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  errorBorder: InputBorder.none,
+                  disabledBorder: InputBorder.none,
+                  hintText: widget.title,
+                  contentPadding: EdgeInsets.zero,
+                  isDense: true,
+                ),
               ),
             ),
           ],

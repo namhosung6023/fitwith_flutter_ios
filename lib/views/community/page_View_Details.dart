@@ -25,17 +25,20 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        buildScaffold(context, _buildBody(),
-            appBar: AppBar(
-              iconTheme: IconThemeData(color: FitwithColors.getSecondary300()),
-              elevation: 0.0,
-              centerTitle: true,
-              backgroundColor: Colors.white,
-              title: Image.asset(
-                'assets/logo_blue.png',
-                height: 25,
-              ),
-            )),
+        buildScaffold(
+          context,
+          _buildBody(),
+          appBar: AppBar(
+            iconTheme: IconThemeData(color: FitwithColors.getSecondary300()),
+            elevation: 0.0,
+            centerTitle: true,
+            backgroundColor: Colors.white,
+            title: Image.asset(
+              'assets/logo_blue.png',
+              height: 25,
+            ),
+          ),
+        ),
         _loading ? buildLoading() : Container()
       ],
     );
@@ -80,58 +83,75 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    children: [widget.item.avatar != null && widget.item.avatar != ''
-                        ? ClipOval(
-                      child: Image.network(
-                        widget.item.avatar,
-                        height: 50,
-                        width: 50,
-                        fit: BoxFit.cover,
+                    children: [
+                      widget.item.avatar != null && widget.item.avatar != ''
+                          ? ClipOval(
+                              child: Image.network(
+                                widget.item.avatar,
+                                height: 50,
+                                width: 50,
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                          : Image.asset(
+                              'assets/Profile.png',
+                              height: 40,
+                            ),
+                      SizedBox(
+                        width: 8,
                       ),
-                    )
-                        : Image.asset(
-                      'assets/Profile.png',
-                      height: 40,
-                    ),
-                      SizedBox(width: 8,),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             widget.item.username,
                             style: TextStyle(
-                              // fontWeight: FontWeight.bold,
+                                // fontWeight: FontWeight.bold,
                                 fontSize: 17,
                                 color: FitwithColors.getSecondary400()),
                           ),
-                          SizedBox(height: 2,),
-                          Text('${formatDate(widget.item.createdAt, [
-                            yyyy, '.', mm, '.', dd, ' '' ', HH, ':', nn
-                          ])}',
+                          SizedBox(
+                            height: 2,
+                          ),
+                          Text(
+                            '${formatDate(widget.item.createdAt, [
+                              yyyy,
+                              '.',
+                              mm,
+                              '.',
+                              dd,
+                              ' ' ' ',
+                              HH,
+                              ':',
+                              nn
+                            ])}',
                             style: TextStyle(
-                              // fontWeight: FontWeight.bold,
+                                // fontWeight: FontWeight.bold,
                                 fontSize: 14,
-                                color: FitwithColors.getSecondary250()),),
+                                color: FitwithColors.getSecondary250()),
+                          ),
                         ],
-                      ),],
+                      ),
+                    ],
                   ),
                   widget.item.userId ==
-                      Provider.of<User>(context, listen: false).userId
+                          Provider.of<User>(context, listen: false).userId
                       ? Container(
-                    alignment: Alignment.bottomRight,
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.of(context).pop();
-                            deleteCommunity(widget.item.id);
-                          },
-                        child: Text('삭제', style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: FitwithColors.getBasicOrange()
-                        ),
-                    ),
-                  ),
-                      )
+                          alignment: Alignment.bottomRight,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(context).pop();
+                              deleteCommunity(widget.item.id);
+                            },
+                            child: Text(
+                              '삭제',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: FitwithColors.getBasicOrange()),
+                            ),
+                          ),
+                        )
                       : Container(),
                 ],
               ),
@@ -140,10 +160,11 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
               ),
               Container(
                 width: double.infinity,
-                child: Text(widget.item.contents,  textAlign: TextAlign.justify, style: TextStyle(
-                  height: 1.2,
-                  fontSize: 16
-                ),),
+                child: Text(
+                  widget.item.contents,
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(height: 1.2, fontSize: 16),
+                ),
                 padding: EdgeInsets.symmetric(vertical: 15),
                 decoration: BoxDecoration(
                     border: Border(

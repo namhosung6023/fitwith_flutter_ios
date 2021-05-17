@@ -4,6 +4,8 @@ import 'package:fitwith/config/colors.dart';
 import 'package:fitwith/models/model_trainer_card.dart';
 import 'package:fitwith/providers/provider_page_index.dart';
 import 'package:fitwith/providers/provider_user.dart';
+import 'package:fitwith/utils/utils_common.dart';
+import 'package:fitwith/views/training/page_trainer_detail.dart';
 import 'package:fitwith/widgets/custom_confirm_dialog.dart';
 import 'package:fitwith/widgets/custom_loading.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +64,7 @@ class _TrainingPageState extends State<TrainingPage> {
   @override
   void initState() {
     super.initState();
-    if(Provider.of<User>(context, listen: false).type == '1') {
+    if (Provider.of<User>(context, listen: false).type == '1') {
       Provider.of<User>(context, listen: false).getPremiumUserData();
       _getTrainerList();
     } else {
@@ -77,70 +79,73 @@ class _TrainingPageState extends State<TrainingPage> {
         : Consumer<User>(builder: (context, user, child) {
             print('here');
             print(user.premiumId);
-            return user.type == '1' ? Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: ListView(
-                padding: EdgeInsets.symmetric(vertical: 10.0),
-                children: [
-                  Text(
-                    '트레이너',
-                    style: TextStyle(
-                      color: FitwithColors.getSecondary400(),
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 25.0),
-                  user.myTrainerId == ''
-                      ? Container()
-                      : Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+            return user.type == '1'
+                ? Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: ListView(
+                      padding: EdgeInsets.symmetric(vertical: 10.0),
+                      children: [
+                        Text(
+                          '트레이너',
+                          style: TextStyle(
+                            color: FitwithColors.getSecondary400(),
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 25.0),
+                        user.myTrainerId == ''
+                            ? Container()
+                            : Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '내 트레이너',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: FitwithColors.getSecondary400(),
+                                    ),
+                                  ),
+                                  SizedBox(height: 10.0),
+                                  _myTrainer != null
+                                      ? _itemBuilder(_myTrainer, user)
+                                      : Container(),
+                                  SizedBox(height: 30.0),
+                                ],
+                              ),
+                        Row(
                           children: [
                             Text(
-                              '내 트레이너',
+                              '추천 트레이너',
                               style: TextStyle(
-                                fontSize: 18,
                                 color: FitwithColors.getSecondary400(),
+                                fontSize: 18,
                               ),
                             ),
-                            SizedBox(height: 10.0),
-                            _myTrainer != null
-                                ? _itemBuilder(_myTrainer, user)
-                                : Container(),
-                            SizedBox(height: 30.0),
+                            SizedBox(width: 4.0),
+                            Text(
+                              '(${_trainers.length}명)',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                color: FitwithColors.getSecondary300(),
+                              ),
+                            ),
                           ],
                         ),
-                  Row(
-                    children: [
-                      Text(
-                        '추천 트레이너',
-                        style: TextStyle(
-                          color: FitwithColors.getSecondary400(),
-                          fontSize: 18,
-                        ),
-                      ),
-                      SizedBox(width: 4.0),
-                      Text(
-                        '(${_trainers.length}명)',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          color: FitwithColors.getSecondary300(),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10.0),
-                  ..._trainers
-                      .map((value) => _itemBuilder(value, user))
-                      .toList(),
-                ],
-              ),
-            )
-            : Container(
-              child: Center(
-                child: Image.asset('assets/comingsoon_5.png',height: 350,)
-              ),
-            );
+                        SizedBox(height: 10.0),
+                        ..._trainers
+                            .map((value) => _itemBuilder(value, user))
+                            .toList(),
+                      ],
+                    ),
+                  )
+                : Container(
+                    child: Center(
+                        child: Image.asset(
+                      'assets/comingsoon_5.png',
+                      height: 350,
+                    )),
+                  );
           });
   }
 
@@ -246,81 +251,82 @@ class _TrainingPageState extends State<TrainingPage> {
             ),
           ),
           onTap: () {
-            if (_myTrainerId == value.trainerId) {
-              Provider.of<PageIndex>(context, listen: false).index = 0;
-            } else {
-              showDialog(
-                context: context,
-                builder: (context) => buildConfirmDialog(
-                  context,
-                  Center(
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              '"${value.username}"',
-                              style: TextStyle(
-                                color: FitwithColors.getPrimaryColor(),
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              '님께',
-                              style: TextStyle(
-                                color: FitwithColors.getSecondary400(),
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 3,),
-                        Text(
-                          '신청하시겠습니까?',
-                          style: TextStyle(
-                            color: FitwithColors.getSecondary400(),
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 40.0,
-                    child: Center(
-                      child: Column(
-                        children: [
-                          Text(
-                            '신청 후 변경이 불가하오니',
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: FitwithColors.getSecondary300(),
-                            ),
-                          ),
-                          Text(
-                            '다시 한번 확인해주세요',
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: FitwithColors.getSecondary300(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  () async {
-                    String message =
-                        await user.postApplyPremium(value.trainerId);
-                    _getTrainerList();
-                    print(message);
-                  },
-                ),
-              );
-            }
+            CommonUtils.movePage(context, TrainerDetailPage());
+            // if (_myTrainerId == value.trainerId) {
+            //   Provider.of<PageIndex>(context, listen: false).index = 0;
+            // } else {
+            //   showDialog(
+            //     context: context,
+            //     builder: (context) => buildConfirmDialog(
+            //       context,
+            //       Center(
+            //         child: Column(
+            //           children: [
+            //             Row(
+            //               mainAxisAlignment: MainAxisAlignment.center,
+            //               children: [
+            //                 Text(
+            //                   '"${value.username}"',
+            //                   style: TextStyle(
+            //                     color: FitwithColors.getPrimaryColor(),
+            //                     fontSize: 20.0,
+            //                     fontWeight: FontWeight.bold,
+            //                   ),
+            //                 ),
+            //                 Text(
+            //                   '님께',
+            //                   style: TextStyle(
+            //                     color: FitwithColors.getSecondary400(),
+            //                     fontSize: 20.0,
+            //                     fontWeight: FontWeight.bold,
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //             SizedBox(height: 3,),
+            //             Text(
+            //               '신청하시겠습니까?',
+            //               style: TextStyle(
+            //                 color: FitwithColors.getSecondary400(),
+            //                 fontSize: 20.0,
+            //                 fontWeight: FontWeight.bold,
+            //               ),
+            //             ),
+            //           ],
+            //         ),
+            //       ),
+            //       Container(
+            //         height: 40.0,
+            //         child: Center(
+            //           child: Column(
+            //             children: [
+            //               Text(
+            //                 '신청 후 변경이 불가하오니',
+            //                 style: TextStyle(
+            //                   fontSize: 13,
+            //                   color: FitwithColors.getSecondary300(),
+            //                 ),
+            //               ),
+            //               Text(
+            //                 '다시 한번 확인해주세요',
+            //                 style: TextStyle(
+            //                   fontSize: 13,
+            //                   color: FitwithColors.getSecondary300(),
+            //                 ),
+            //               ),
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       () async {
+            //         String message =
+            //             await user.postApplyPremium(value.trainerId);
+            //         _getTrainerList();
+            //         print(message);
+            //       },
+            //     ),
+            //   );
+            // }
           },
         ),
       ),

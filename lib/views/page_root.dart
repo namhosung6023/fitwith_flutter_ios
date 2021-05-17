@@ -50,7 +50,7 @@ class _RootPageState extends State<RootPage> {
       ),
       CommunityPage(),
       TrainingPage(),
-      ShoppingPage(),
+      // ShoppingPage(),
       MyPage()
     ];
 
