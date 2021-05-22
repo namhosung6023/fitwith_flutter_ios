@@ -17,7 +17,6 @@ Widget buildBottomNavigationBar(BuildContext context) {
           currentIndex: value.index,
           onTap: (index) => value.index = index,
           selectedFontSize: 12.0,
-          showUnselectedLabels: false,
           items: [
             BottomNavigationBarItem(
               icon: Padding(
@@ -50,7 +49,7 @@ Widget buildBottomNavigationBar(BuildContext context) {
                       : 'assets/icons/navbar/home_gray.svg',
                 ),
               ),
-              label: '트레이닝',
+              label: '트레이너',
             ),
             // BottomNavigationBarItem(
             //   icon: Padding(
@@ -67,7 +66,7 @@ Widget buildBottomNavigationBar(BuildContext context) {
               icon: Padding(
                 padding: EdgeInsets.symmetric(vertical: 4.0),
                 child: SvgPicture.asset(
-                  value.index == 4
+                  value.index == 3
                       ? 'assets/icons/navbar/mypage_blue.svg'
                       : 'assets/icons/navbar/mypage_gray.svg',
                 ),

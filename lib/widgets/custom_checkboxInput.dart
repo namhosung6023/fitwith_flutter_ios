@@ -7,8 +7,10 @@ class CustomCheckboxInput extends StatefulWidget {
   final String title;
   final bool value;
   final Function onChanged;
+  final Function onEditingComplete;
 
-  CustomCheckboxInput({Key key, this.title, this.value, this.onChanged})
+  CustomCheckboxInput(
+      {Key key, this.title, this.value, this.onChanged, this.onEditingComplete})
       : super(key: key);
 
   @override
@@ -16,6 +18,8 @@ class CustomCheckboxInput extends StatefulWidget {
 }
 
 class _CustomCheckboxInputState extends State<CustomCheckboxInput> {
+  final _textEditingController = TextEditingController();
+  FocusNode myFocusNode;
   final riveFileName = 'assets/flares/checkbox-linebold.riv';
   Artboard _artBoard;
   RiveAnimationController _controller;
@@ -42,6 +46,18 @@ class _CustomCheckboxInputState extends State<CustomCheckboxInput> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    myFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    myFocusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Image _checkbox;
     bool _value;
@@ -51,6 +67,7 @@ class _CustomCheckboxInputState extends State<CustomCheckboxInput> {
       _checkbox = Image.asset('assets/flares/unchecked.png');
 
     return InkWell(
+      focusColor: Colors.transparent,
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 10.0),
         child: Row(
@@ -70,33 +87,53 @@ class _CustomCheckboxInputState extends State<CustomCheckboxInput> {
                     child: _checkbox,
                   ),
             SizedBox(width: 15.0),
-            Expanded(
-              child: TextField(
-                style: TextStyle(
-                  color: FitwithColors.getSecondary300(),
-                  fontSize: 18.0,
-                ),
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  enabledBorder: InputBorder.none,
-                  errorBorder: InputBorder.none,
-                  disabledBorder: InputBorder.none,
-                  hintText: widget.title,
-                  contentPadding: EdgeInsets.zero,
-                  isDense: true,
-                ),
-              ),
-            ),
+            widget.value
+                ? Expanded(
+                    child: TextField(
+                      focusNode: myFocusNode,
+                      controller: _textEditingController,
+                      style: TextStyle(
+                        color: FitwithColors.getSecondary300(),
+                        fontSize: 18.0,
+                      ),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        disabledBorder: InputBorder.none,
+                        hintText: widget.title,
+                        contentPadding: EdgeInsets.zero,
+                        isDense: true,
+                      ),
+                      onChanged: (value) {
+                        widget.onEditingComplete(value);
+                      },
+                    ),
+                  )
+                : Text(
+                    widget.title,
+                    style: TextStyle(
+                      color: FitwithColors.getSecondary300(),
+                      fontSize: 18.0,
+                    ),
+                  ),
           ],
         ),
       ),
       onTap: () {
         if (widget.value) {
-          setState(() => _value = false);
+          setState(() {
+            _value = false;
+            _textEditingController.text = '';
+          });
           _uncheckedAnimation();
         } else {
-          setState(() => _value = true);
+          setState(() {
+            _value = true;
+            WidgetsBinding.instance.addPostFrameCallback(
+                (_) => FocusScope.of(context).requestFocus(myFocusNode));
+          });
           _checkedAnimation();
         }
         widget.onChanged(_value);

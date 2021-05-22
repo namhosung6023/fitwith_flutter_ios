@@ -1,4 +1,4 @@
-   import 'dart:io';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:fitwith/config/env.dart';
@@ -20,8 +20,10 @@ class User extends ChangeNotifier {
   static String _token;
   static String _type; // 1 일반유저, 2 트레이너
   static String _username;
+  static String _email;
   static int _age;
   static String _gender;
+  static String _avatar;
   static DateTime _selectedDay = DateTime(
     DateTime.now().year,
     DateTime.now().month,
@@ -44,8 +46,10 @@ class User extends ChangeNotifier {
   String get token => _token;
   String get type => _type ?? '';
   String get username => _username ?? '';
+  String get email => _email ?? '';
   int get age => _age ?? 0;
   String get gender => _gender ?? '';
+  String get avatar => _avatar ?? '';
   DateTime get selectedDay => _selectedDay;
   Comment get trainerComment => _trainerComment;
   String get trainerName => _trainerName;
@@ -72,7 +76,6 @@ class User extends ChangeNotifier {
   BaseOptions options = dioOptions;
 
   Future<String> getUser() async {
-
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _token = prefs.getString('token');
     print('token: $_token');
@@ -83,10 +86,9 @@ class User extends ChangeNotifier {
       return 'token is null';
     } else {
       try {
-
         dio.options.headers['accesstoken'] = _token;
         Response response = await dio.get('accounts/profile');
-        print(response.data['data']['_id']);
+        print(response.data['data']);
 
         if (response.data['data']['trainer'] != null)
           _trainerId = response.data['data']['trainer'] as String;
@@ -105,8 +107,10 @@ class User extends ChangeNotifier {
 
         _type = response.data['data']['type'] as String;
         _username = response.data['data']['username'] as String;
+        _email = response.data['data']['email'] as String;
         _age = response.data['data']['age'] as int;
         _gender = response.data['data']['gender'] as String;
+        _avatar = response.data['data']['avatar'] as String;
 
         if (_type == '1' &&
             response.data['data']['premiumTrainer'].length == 0) {
@@ -287,9 +291,9 @@ class User extends ChangeNotifier {
   void toggleWorkoutCheckbox(int index) async {
     print(index);
     print(_workoutList[index].isEditable);
-    if (_workoutList[index].isEditable != null){
+    if (_workoutList[index].isEditable != null) {
       _workoutList[index].isEditable = !_workoutList[index].isEditable;
-      if (_workoutList[index].isEditable){
+      if (_workoutList[index].isEditable) {
         _workoutList[index].checkDate = DateTime.now();
       } else {
         _workoutList[index].checkDate = null;
@@ -304,13 +308,14 @@ class User extends ChangeNotifier {
     } else {
       try {
         dio.options.headers['accesstoken'] = _token;
-        await dio.put('premium/checklist/workoutlist/user/checkbox/$_premiumId', data: {
-          "name": _workoutList[index].name,
-          "contents": _workoutList[index].contents,
-          "isEditable": _workoutList[index].isEditable,
-          "workoutId": _workoutList[index].innerId,
-          "checklistId": _workoutList[index].outerId,
-        });
+        await dio.put('premium/checklist/workoutlist/user/checkbox/$_premiumId',
+            data: {
+              "name": _workoutList[index].name,
+              "contents": _workoutList[index].contents,
+              "isEditable": _workoutList[index].isEditable,
+              "workoutId": _workoutList[index].innerId,
+              "checklistId": _workoutList[index].outerId,
+            });
       } on DioError catch (e) {
         print('checkbox click: ${e.message}');
       }
@@ -328,7 +333,8 @@ class User extends ChangeNotifier {
     } else {
       try {
         dio.options.headers['accesstoken'] = _token;
-        await dio.put('premium/checklist/dietlist/user/checkbox/$_premiumId', data: {
+        await dio
+            .put('premium/checklist/dietlist/user/checkbox/$_premiumId', data: {
           "name": _dietList[index].name,
           "contents": _dietList[index].contents,
           "isEditable": _dietList[index].isEditable,

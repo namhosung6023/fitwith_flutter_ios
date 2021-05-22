@@ -1,23 +1,23 @@
 import 'package:fitwith/config/colors.dart';
-import 'package:fitwith/models/model_checklist.dart';
 import 'package:fitwith/utils/utils_common.dart';
-import 'package:fitwith/views/mypage/survey/page_second_survey.dart';
-import 'package:fitwith/widgets/custom_checkboxInput.dart';
-import 'package:fitwith/widgets/custom_checkbox_tile.dart';
-import 'package:fitwith/widgets/custom_checklist_Item.dart';
-import 'package:fitwith/widgets/custom_outlined_textfield.dart';
+import 'package:fitwith/views/mypage/survey/page_third_survey.dart';
 import 'package:fitwith/widgets/custom_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:kopo/kopo.dart';
 
 class SecondSurveyPage extends StatefulWidget {
+  final List<String> field;
+  final String etcField;
+  SecondSurveyPage({Key key, this.field, this.etcField}) : super(key: key);
   @override
   _SecondSurveyPageState createState() => _SecondSurveyPageState();
 }
 
 class _SecondSurveyPageState extends State<SecondSurveyPage> {
+  String _address = '';
+  TextEditingController _detailAddress = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return buildScaffold(
@@ -96,7 +96,9 @@ class _SecondSurveyPageState extends State<SecondSurveyPage> {
             InkWell(
               onTap: () async {
                 KopoModel model = await CommonUtils.movePage(context, Kopo());
-                print(model.toJson());
+                setState(() {
+                  _address = model.address;
+                });
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -119,9 +121,11 @@ class _SecondSurveyPageState extends State<SecondSurveyPage> {
                         ),
                       ),
                       Text(
-                        '뚝섬로 13길, 38',
+                        _address == '' ? '예) 뚝섬로 13길, 38' : _address,
                         style: TextStyle(
-                          color: FitwithColors.getSecondary400(),
+                          color: _address == ''
+                              ? FitwithColors.getSecondary200()
+                              : FitwithColors.getSecondary400(),
                           fontSize: 16.0,
                         ),
                       ),
@@ -132,6 +136,7 @@ class _SecondSurveyPageState extends State<SecondSurveyPage> {
             ),
             SizedBox(height: 10.0),
             TextField(
+              controller: _detailAddress,
               style: TextStyle(
                 color: FitwithColors.getSecondary300(),
                 fontSize: 16.0,
@@ -212,8 +217,14 @@ class _SecondSurveyPageState extends State<SecondSurveyPage> {
                       ),
                     ),
                   ),
-                  onTap: () =>
-                      CommonUtils.movePage(context, SecondSurveyPage()),
+                  onTap: () => CommonUtils.movePage(
+                      context,
+                      ThirdSurveyPage(
+                        field: widget.field,
+                        etcField: widget.etcField,
+                        address: _address,
+                        detailAddress: _detailAddress.text,
+                      )),
                 ),
               ],
             ),

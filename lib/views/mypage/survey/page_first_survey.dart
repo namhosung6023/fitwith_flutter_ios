@@ -1,13 +1,10 @@
 import 'package:fitwith/config/colors.dart';
-import 'package:fitwith/models/model_checklist.dart';
 import 'package:fitwith/utils/utils_common.dart';
 import 'package:fitwith/views/mypage/survey/page_second_survey.dart';
 import 'package:fitwith/widgets/custom_checkboxInput.dart';
 import 'package:fitwith/widgets/custom_checkbox_tile.dart';
-import 'package:fitwith/widgets/custom_checklist_Item.dart';
 import 'package:fitwith/widgets/custom_scaffold.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class FirstSurveyPage extends StatefulWidget {
   @override
@@ -15,6 +12,10 @@ class FirstSurveyPage extends StatefulWidget {
 }
 
 class _FirstSurveyPageState extends State<FirstSurveyPage> {
+  List<String> _field = [];
+  bool _isEtcField = false;
+  String _etcField = '';
+
   @override
   Widget build(BuildContext context) {
     return buildScaffold(
@@ -71,9 +72,18 @@ class _FirstSurveyPageState extends State<FirstSurveyPage> {
             ),
             SizedBox(height: 40.0),
             CustomCheckboxTile(
-              title: '영양/식단 관리',
-              value: true,
-              onChanged: () {},
+              title: '퍼스널 트레이닝',
+              value: _field.where((item) => item == '퍼스널 트레이닝').isNotEmpty,
+              onChanged: (value) {
+                setState(() {
+                  if (value) {
+                    _field.add('퍼스널 트레이닝');
+                  } else {
+                    _field.removeWhere((item) => item == '퍼스널 트레이닝');
+                  }
+                });
+                print(_field);
+              },
               fontSize: 18.0,
               paddingVertical: 10.0,
               paddingCenter: 15.0,
@@ -81,9 +91,18 @@ class _FirstSurveyPageState extends State<FirstSurveyPage> {
             ),
             Divider(),
             CustomCheckboxTile(
-              title: '퍼스널 트레이닝',
-              value: true,
-              onChanged: () {},
+              title: '영양/식단 관리',
+              value: _field.where((item) => item == '영양/식단 관리').isNotEmpty,
+              onChanged: (value) {
+                setState(() {
+                  if (value) {
+                    _field.add('영양/식단 관리');
+                  } else {
+                    _field.removeWhere((item) => item == '영양/식단 관리');
+                  }
+                });
+                print(_field);
+              },
               fontSize: 18.0,
               paddingVertical: 10.0,
               paddingCenter: 15.0,
@@ -92,8 +111,17 @@ class _FirstSurveyPageState extends State<FirstSurveyPage> {
             Divider(),
             CustomCheckboxTile(
               title: '필라테스',
-              value: true,
-              onChanged: () {},
+              value: _field.where((item) => item == '필라테스').isNotEmpty,
+              onChanged: (value) {
+                setState(() {
+                  if (value) {
+                    _field.add('필라테스');
+                  } else {
+                    _field.removeWhere((item) => item == '필라테스');
+                  }
+                });
+                print(_field);
+              },
               fontSize: 18.0,
               paddingVertical: 10.0,
               paddingCenter: 15.0,
@@ -102,28 +130,17 @@ class _FirstSurveyPageState extends State<FirstSurveyPage> {
             Divider(),
             CustomCheckboxTile(
               title: '요가',
-              value: true,
-              onChanged: () {},
-              fontSize: 18.0,
-              paddingVertical: 10.0,
-              paddingCenter: 15.0,
-              isBig: true,
-            ),
-            Divider(),
-            CustomCheckboxTile(
-              title: '스피닝',
-              value: true,
-              onChanged: () {},
-              fontSize: 18.0,
-              paddingVertical: 10.0,
-              paddingCenter: 15.0,
-              isBig: true,
-            ),
-            Divider(),
-            CustomCheckboxTile(
-              title: '크로스핏',
-              value: true,
-              onChanged: () {},
+              value: _field.where((item) => item == '요가').isNotEmpty,
+              onChanged: (value) {
+                setState(() {
+                  if (value) {
+                    _field.add('요가');
+                  } else {
+                    _field.removeWhere((item) => item == '요가');
+                  }
+                });
+                print(_field);
+              },
               fontSize: 18.0,
               paddingVertical: 10.0,
               paddingCenter: 15.0,
@@ -132,8 +149,26 @@ class _FirstSurveyPageState extends State<FirstSurveyPage> {
             Divider(),
             CustomCheckboxInput(
               title: '기타(직접입력)',
-              value: true,
-              onChanged: () {},
+              value: _isEtcField,
+              onChanged: (value) {
+                print(_etcField);
+                setState(() {
+                  _isEtcField = value;
+                  if (!value) {
+                    _etcField = '';
+                  }
+                });
+              },
+              onEditingComplete: (value) {
+                setState(() {
+                  if (value.trim == '') {
+                    _isEtcField = false;
+                  } else {
+                    _etcField = value;
+                  }
+                });
+                print(_etcField);
+              },
             ),
             Divider(),
             SizedBox(height: 20.0),
@@ -160,8 +195,12 @@ class _FirstSurveyPageState extends State<FirstSurveyPage> {
                       ),
                     ),
                   ),
-                  onTap: () =>
-                      CommonUtils.movePage(context, SecondSurveyPage()),
+                  onTap: () => CommonUtils.movePage(
+                      context,
+                      SecondSurveyPage(
+                        field: _field,
+                        etcField: _etcField,
+                      )),
                 ),
               ],
             ),

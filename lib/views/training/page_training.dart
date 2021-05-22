@@ -2,11 +2,9 @@ import 'package:date_format/date_format.dart';
 import 'package:fitwith/api/api_trainer.dart';
 import 'package:fitwith/config/colors.dart';
 import 'package:fitwith/models/model_trainer_card.dart';
-import 'package:fitwith/providers/provider_page_index.dart';
 import 'package:fitwith/providers/provider_user.dart';
 import 'package:fitwith/utils/utils_common.dart';
 import 'package:fitwith/views/training/page_trainer_detail.dart';
-import 'package:fitwith/widgets/custom_confirm_dialog.dart';
 import 'package:fitwith/widgets/custom_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,6 +32,7 @@ class _TrainingPageState extends State<TrainingPage> {
       _trainers = [];
       for (int i = 0; i < res['data'].length; i++) {
         List<String> _fields = [];
+
         if (res['data'][i]['trainer']['mainFields'] != null) {
           for (int j = 0;
               j < res['data'][i]['trainer']['mainFields'].length;
@@ -51,6 +50,7 @@ class _TrainingPageState extends State<TrainingPage> {
           res['data'][i]['username'],
           res['data'][i]['trainer']['profileImages'][0],
           _fields,
+          res['data'][i]['trainer']['trainerIntro'],
         );
         if (_myTrainerId == res['data'][i]['trainer']['_id'])
           setState(() => _myTrainer = _trainer);
@@ -251,82 +251,7 @@ class _TrainingPageState extends State<TrainingPage> {
             ),
           ),
           onTap: () {
-            CommonUtils.movePage(context, TrainerDetailPage());
-            // if (_myTrainerId == value.trainerId) {
-            //   Provider.of<PageIndex>(context, listen: false).index = 0;
-            // } else {
-            //   showDialog(
-            //     context: context,
-            //     builder: (context) => buildConfirmDialog(
-            //       context,
-            //       Center(
-            //         child: Column(
-            //           children: [
-            //             Row(
-            //               mainAxisAlignment: MainAxisAlignment.center,
-            //               children: [
-            //                 Text(
-            //                   '"${value.username}"',
-            //                   style: TextStyle(
-            //                     color: FitwithColors.getPrimaryColor(),
-            //                     fontSize: 20.0,
-            //                     fontWeight: FontWeight.bold,
-            //                   ),
-            //                 ),
-            //                 Text(
-            //                   '님께',
-            //                   style: TextStyle(
-            //                     color: FitwithColors.getSecondary400(),
-            //                     fontSize: 20.0,
-            //                     fontWeight: FontWeight.bold,
-            //                   ),
-            //                 ),
-            //               ],
-            //             ),
-            //             SizedBox(height: 3,),
-            //             Text(
-            //               '신청하시겠습니까?',
-            //               style: TextStyle(
-            //                 color: FitwithColors.getSecondary400(),
-            //                 fontSize: 20.0,
-            //                 fontWeight: FontWeight.bold,
-            //               ),
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //       Container(
-            //         height: 40.0,
-            //         child: Center(
-            //           child: Column(
-            //             children: [
-            //               Text(
-            //                 '신청 후 변경이 불가하오니',
-            //                 style: TextStyle(
-            //                   fontSize: 13,
-            //                   color: FitwithColors.getSecondary300(),
-            //                 ),
-            //               ),
-            //               Text(
-            //                 '다시 한번 확인해주세요',
-            //                 style: TextStyle(
-            //                   fontSize: 13,
-            //                   color: FitwithColors.getSecondary300(),
-            //                 ),
-            //               ),
-            //             ],
-            //           ),
-            //         ),
-            //       ),
-            //       () async {
-            //         String message =
-            //             await user.postApplyPremium(value.trainerId);
-            //         _getTrainerList();
-            //         print(message);
-            //       },
-            //     ),
-            //   );
-            // }
+            CommonUtils.movePage(context, TrainerDetailPage(trainer: value));
           },
         ),
       ),
